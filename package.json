@@ -8,9 +8,14 @@
         "build": "turbo build",
         "dev": "turbo dev",
         "test": "turbo run test",
+        "test:unit": "turbo run test:unit",
+        "test:integration": "turbo run test:integration",
         "test:e2e": "turbo run test:e2e",
+        "test:all": "turbo run test:all",
+        "check-types": "turbo check-types",
         "lint": "turbo lint",
         "format": "prettier --write \"**/*.{js,mjs,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,sass}\" --ignore-path .prettierignore",
+        "coupling-graph": "pnpx madge --extensions js,jsx,ts,tsx,css,md,mdx ./ --exclude '.next|tailwind.config.js|reset.d.ts|prettier.config.js|postcss.config.js|jest.config.ts|playwright.config.ts|next.config.js|next-env.d.ts|instrumentation.ts|eslint.config.js|e2e/|README.md|.storybook/|storybook-static/|src/stories/|.eslintrc.js|__test__/|eslint-config/|jest-config/|typescript-config|coverage' --image graph.svg",
         "generate:index": "pnpx tsx scripts/generate-index.ts"
     },
     "devDependencies": {

@@ -17,7 +17,25 @@
         "check-types": {
             "dependsOn": ["^check-types"]
         },
-        "test": {},
-        "test:e2e": {}
+        "test": {
+            "dependsOn": ["^test"],
+            "outputs": []
+        },
+        "test:unit": {
+            "dependsOn": ["^test:unit"],
+            "outputs": ["coverage/**"]
+        },
+        "test:integration": {
+            "dependsOn": ["^test:integration"],
+            "outputs": []
+        },
+        "test:e2e": {
+            "dependsOn": ["^test:e2e", "build"],
+            "outputs": []
+        },
+        "test:all": {
+            "dependsOn": ["test:unit", "test:integration", "test:e2e"],
+            "outputs": []
+        }
     }
 }

@@ -1,6 +1,7 @@
-import RootPage from '@/src/app/page'
 import { afterAll, describe, expect, it } from '@jest/globals'
 import { render } from '@testing-library/react'
+
+import RootPage from '@/app/page'
 
 // TODO
 // window.fetch = jest.fn().mockImplementation(() =>

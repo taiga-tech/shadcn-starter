@@ -1,9 +1,6 @@
 import fs from 'fs'
 
-const targetDirs = [
-    './apps/web/src/lib/json-ld',
-    './apps/web/src/lib/fonts',
-]
+const targetDirs = ['./apps/web/src/lib/json-ld', './apps/web/src/lib/fonts']
 
 targetDirs.forEach((dir) => {
     // ファイル読み込み

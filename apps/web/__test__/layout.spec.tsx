@@ -1,5 +1,6 @@
-import { metadata } from '@/src/app/layout'
 import { describe, expect, it } from '@jest/globals'
+
+import { metadata } from '@/app/layout'
 
 describe('Root layout', () => {
     describe('metadata', () => {

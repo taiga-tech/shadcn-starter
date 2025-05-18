@@ -1,6 +1,6 @@
 import js from '@eslint/js'
 import eslintConfigPrettier from 'eslint-config-prettier'
-import onlyWarn from 'eslint-plugin-only-warn'
+import eslintPrettierPlugin from 'eslint-plugin-prettier/recommended'
 import turboPlugin from 'eslint-plugin-turbo'
 import tseslint from 'typescript-eslint'
 
@@ -12,6 +12,7 @@ import tseslint from 'typescript-eslint'
 export const config = [
     js.configs.recommended,
     eslintConfigPrettier,
+    eslintPrettierPlugin,
     ...tseslint.configs.recommended,
     {
         plugins: {
@@ -22,11 +23,6 @@ export const config = [
         },
     },
     {
-        plugins: {
-            onlyWarn,
-        },
-    },
-    {
-        ignores: ['dist/**'],
+        ignores: ['**/build/**', '**/dist/**', '**/node_modules/**'],
     },
 ]
