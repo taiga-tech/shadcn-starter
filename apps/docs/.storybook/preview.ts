@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/react'
+import type { Preview } from '@storybook/nextjs'
 
 import '@workspace/ui/globals.css'
 
@@ -12,6 +12,7 @@ const preview: Preview = {
             },
         },
     },
+    tags: ['autodocs'],
 }
 
 export default preview
