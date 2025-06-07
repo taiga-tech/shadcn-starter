@@ -6,7 +6,8 @@
             "Bash(pnpm install:*)",
             "Bash(pnpm check-types)",
             "Bash(pnpm build:*)",
-            "Bash(pnpm view:*)"
+            "Bash(pnpm view:*)",
+            "Bash(turbo check-types:*)"
         ],
         "deny": []
     }
