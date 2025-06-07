@@ -1,0 +1,82 @@
+ls:
+  .dir: kebab-case
+  .js: kebab-case
+  .mjs: kebab-case
+  .ts: kebab-case
+  .d.ts: kebab-case
+  .tsx: kebab-case
+  .jsx: kebab-case
+  .json: kebab-case
+  .md: kebab-case
+  .mdx: kebab-case
+  .css: kebab-case
+  .scss: kebab-case
+  .sass: kebab-case
+  .html: kebab-case
+  .yml: kebab-case
+  .yaml: kebab-case
+  .toml: kebab-case
+  .ico: kebab-case
+  .svg: kebab-case
+  .png: kebab-case
+  .jpg: kebab-case
+  .jpeg: kebab-case
+
+ignore:
+  # Git and IDEs
+  - .git
+  - .vscode
+  - .cursor
+  - .idea
+
+  # Dependencies and build outputs (recursive patterns)
+  - '**/node_modules'
+  - '**/.turbo'
+  - '**/.next'
+  - '**/storybook-static'
+  - '**/dist'
+  - '**/build'
+  - '**/coverage'
+  - '**/.swc'
+
+  # Package management
+  - .changeset
+  - .pnpm-store
+
+  # Testing and temp files (recursive patterns)
+  - '**/__test__/__snapshots__'
+  - '**/test-results'
+  - '**/.tmp'
+  - '**/.temp'
+  - '**/.cache'
+
+  # Logs
+  - '*.log'
+  - logs
+
+  # Standard files that should not follow kebab-case
+  - README.md
+  - CLAUDE.md
+  - LICENSE
+  - CHANGELOG.md
+  - CONTRIBUTING.md
+  - CODE_OF_CONDUCT.md
+  - '**/README.md'
+
+  # Next.js specific files that follow their own naming conventions
+  - next-env.d.ts
+  - favicon.ico
+  - robots.txt
+  - sitemap.xml
+  - manifest.json
+
+  # TypeScript config files with dots
+  - 'tsconfig*.json'
+
+  # Hidden files and configs that may not follow kebab-case
+  - '.*'
+  - '**/.*'
+
+  # Special directories that contain auto-generated or third-party content
+  - '**/__test__'
+  - '**/test-results'
