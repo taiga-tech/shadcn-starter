@@ -57,6 +57,7 @@ ignore:
   # Standard files that should not follow kebab-case
   - README.md
   - CLAUDE.md
+  - TEMPLATE_USAGE.md
   - LICENSE
   - CHANGELOG.md
   - CONTRIBUTING.md

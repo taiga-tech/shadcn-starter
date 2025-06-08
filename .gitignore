@@ -36,3 +36,6 @@ npm-debug.log*
 *.pem
 
 storybook-static
+
+# Claude code
+.claude/settings.local.json

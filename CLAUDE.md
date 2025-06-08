@@ -1,6 +1,7 @@
 # CLAUDE.md
 
 このファイルは、Claude Code (claude.ai/code) がこのリポジトリで作業する際のガイダンスを提供します。
+回答は必ず日本語で行ってください。
 
 ## プロジェクト構造
 
@@ -103,6 +104,14 @@ Prettier が自動的に以下の順序でインポートをソート：
 - **E2Eテスト**: Playwright使用、ビルドステップが必要
 - **Jest設定**: `@workspace/jest-config` で共有
 
+#### テスト指針
+
+- **画面**: Playwright で E2Eテスト（ビルド後）
+- **コンポーネント**: Storybook でビジュアル・インタラクションテスト
+- **ユーティリティ関数**: Jest でユニットテスト（`lib/` 内の関数）
+- **Server Actions**: Jest でユニットテスト（入力/出力・エラーハンドリング）
+- **ビジネスロジック**: Jest でユニットテスト（純粋関数・カスタムフック）
+
 ### コンポーネント開発
 
 - UIコンポーネント: `packages/ui/src/components/`
@@ -116,6 +125,7 @@ Prettier が自動的に以下の順序でインポートをソート：
 
 - **App Router** を標準採用
 - **TypeScript 必須**（ESLint/型エラーは常にゼロ）
+    - any型の使用は避けて下さい
     - ESLintエラーが発生した場合はignoreせず根本的な解決をする
 - **API Routes** は使用しない - すべてのサーバー処理は Server Actions で実装
 
@@ -146,6 +156,7 @@ const/       # 定数（このプロジェクトではsns.tsが存在）
 - **UI**: shadcn/ui コンポーネントを優先使用
 - **アイコン**: lucide-react を統一使用（このプロジェクトで既に導入済み）
 - **グローバル状態**: ライブラリは使用しない（必要時は React Context + useReducer）
+- **URL 状態** nuqs に統一
 
 ### 5. パフォーマンス
 
@@ -154,6 +165,54 @@ const/       # 定数（このプロジェクトではsns.tsが存在）
 - 動的 import で遅延読み込み
 - 画像は next/image、リンクは next/link
 - ルートベースのコード分割を徹底
+- 1ファイルの行数は 300 行以下を目安
+- できるだけコンポーネントを小さく保つ
+
+#### メモ化と定数の最適化
+
+**定数・固定値の配置:**
+
+- **コンポーネント外**: 依存関係がない配列、オブジェクト、文字列定数
+- **別ファイル**: 複数コンポーネントで使用する定数は `const/` ディレクトリ
+- **コンポーネント内**: props や state に依存する動的な値のみ
+
+```tsx
+// ❌ Bad: 毎回新しいオブジェクトを作成
+const Component = () => {
+  const options = { style: 'solid', size: 'lg' }
+  return <Button {...options} />
+}
+
+// ✅ Good: コンポーネント外に定義
+const BUTTON_OPTIONS = { style: 'solid', size: 'lg' }
+const Component = () => {
+  return <Button {...BUTTON_OPTIONS} />
+}
+```
+
+**メモ化の適用指針:**
+
+- **useMemo**: 重い計算結果、複雑なオブジェクト/配列の生成
+- **useCallback**: 子コンポーネントに渡すイベントハンドラー
+- **React.memo**: レンダリングコストが高いコンポーネント
+
+```tsx
+// ✅ Good: 重い計算をメモ化
+const expensiveValue = useMemo(() => {
+    return items.reduce((acc, item) => acc + item.value, 0)
+}, [items])
+
+// ✅ Good: イベントハンドラーをメモ化
+const handleClick = useCallback(
+    (id: string) => {
+        onItemClick(id)
+    },
+    [onItemClick]
+)
+
+// ❌ Bad: 不要なメモ化
+const simpleValue = useMemo(() => 'static string', []) // 定数なのでコンポーネント外へ
+```
 
 ### 6. フォーム・バリデーション
 
@@ -185,6 +244,27 @@ const/       # 定数（このプロジェクトではsns.tsが存在）
 - ES5 形式の末尾コンマ
 - Tailwind クラスは自動ソート
 - インポート文は自動ソート・グループ化
+
+### className の結合
+
+- **必須**: `cn()` 関数を使用してclassNameを結合する
+- テンプレートリテラル（`${}`）による文字列結合は使用しない
+- `cn()` は `@workspace/ui/lib/utils` からインポート
+
+```tsx
+// ❌ Bad: テンプレートリテラルを使用
+className={`${baseClass} ${conditionalClass}`}
+
+// ✅ Good: cn()関数を使用
+className={cn(baseClass, conditionalClass)}
+
+// ✅ Good: 条件付きクラス
+className={cn(
+  'base-class',
+  isActive && 'active-class',
+  variant === 'primary' ? 'primary-class' : 'secondary-class'
+)}
+```
 
 ## 実装フロー
 

@@ -1,44 +1,70 @@
 import type { Organization, WithContext } from 'schema-dts'
 
-import { SOCIALS } from '@/const/sns'
-
-// import INFO from '@/const/info'
 // import { SOCIALS } from '@/const/sns'
 
-// https://www.itti.jp/web-design/microdata-json-ld/
+const BASE_URL = process.env.VERCEL_URL!
+    ? `https://${process.env.VERCEL_URL!}`
+    : 'http://localhost:3000'
 
 export const organization: WithContext<Organization> = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    // founder: '',
-    // name: INFO.name,
-    // description: '',
-    // founder: '仲野 大雅',
-    // foundingDate: '2023-08-04',
-    // image: INFO.contact.hp.content + '/opengraph-image/',
-    // url: INFO.contact.hp.content,
-    // logo: INFO.contact.hp.content + '/public/favicons/icon-512x512.png',
-    // telephone: INFO.contact.tel.content,
-    // "faxNumber": "+81-00-0000-0000",
-    // address: {
-    //     '@type': 'PostalAddress',
-    //     streetAddress: INFO.address.street,
-    //     addressLocality: INFO.address.locality,
-    //     addressRegion: INFO.address.region,
-    //     postalCode: INFO.address.code,
-    //     addressCountry: 'JP',
-    // },
-    // geo: {
-    //     '@type': 'GeoCoordinates',
-    //     latitude: INFO.geo.lat,
-    //     longitude: INFO.geo.long,
-    // },
-    // "contactPoint": [
-    //     {
-    //         "@type": "ContactPoint",
-    //         "telephone": "+81-00-0000-0000",
-    //         "contactType": "customer service"
-    //     }
-    // ],
-    sameAs: SOCIALS.map((item) => item.href),
+    name: 'shadcn/ui Starter',
+    description:
+        'Next.js 15、React 19、Turborepoを使用したshadcn/uiコンポーネントライブラリのモノレポテンプレート',
+    url: BASE_URL,
+    logo: `${BASE_URL}/favicon.ico`,
+    foundingDate: '2024',
+    // sameAs: SOCIALS.map((item) => item.href),
+}
+
+/**
+ * ブログ記事用のArticle構造化データを生成
+ */
+export const generateArticleJsonLd = ({
+    title,
+    description,
+    publishedTime,
+    modifiedTime,
+    url,
+    imageUrl,
+    authorName = 'Taiga',
+    section,
+}: {
+    title: string
+    description: string
+    publishedTime: string
+    modifiedTime?: string
+    url: string
+    imageUrl?: string
+    authorName?: string
+    section?: string
+}): WithContext<import('schema-dts').Article> => ({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    image: imageUrl || `${BASE_URL}/api/og?title=${encodeURIComponent(title)}`,
+    datePublished: publishedTime,
+    dateModified: modifiedTime || publishedTime,
+    author: {
+        '@type': 'Person',
+        name: authorName,
+    },
+    publisher: organization,
+    url: `${BASE_URL}${url}`,
+    ...(section && { articleSection: section }),
+})
+
+/**
+ * WebSite構造化データ
+ */
+export const websiteJsonLd: WithContext<import('schema-dts').WebSite> = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'shadcn/ui Starter',
+    description:
+        'Next.js 15、React 19、Turborepoを使用したshadcn/uiコンポーネントライブラリのモノレポテンプレート',
+    url: BASE_URL,
+    publisher: organization,
 }
