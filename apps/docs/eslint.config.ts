@@ -3,4 +3,12 @@ import { nextJsConfig } from '@workspace/eslint-config/next'
 import storybook from 'eslint-plugin-storybook'
 
 /** @type {import("eslint").Linter.Config[]} */
-export default [...nextJsConfig, ...storybook.configs['flat/recommended']]
+export default [
+    ...nextJsConfig,
+    ...storybook.configs['flat/recommended'],
+    {
+        rules: {
+            '@next/next/no-html-link-for-pages': 'off',
+        },
+    },
+]

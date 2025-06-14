@@ -23,7 +23,8 @@
         "release": "changeset publish",
         "generate:graph": "pnpx madge --extensions js,jsx,ts,tsx,css,md,mdx ./ --exclude '.next|tailwind.config.js|reset.d.ts|prettier.config.js|postcss.config.js|jest.config.ts|playwright.config.ts|next.config.js|next-env.d.ts|instrumentation.ts|eslint.config.js|e2e/|README.md|.storybook/|storybook-static/|src/stories/|.eslintrc.js|__test__/|eslint-config/|jest-config/|typescript-config|coverage' --image graph.svg",
         "generate:index": "pnpx tsx scripts/generate/index-files.ts",
-        "clean-install": "pnpx tsx scripts/clean-install.ts"
+        "clean-install": "pnpx tsx scripts/clean-install.ts",
+        "task-master": "task-master"
     },
     "devDependencies": {
         "@changesets/cli": "^2.29.4",
@@ -41,5 +42,5 @@
     "engines": {
         "node": ">=20"
     },
-    "packageManager": "pnpm@10.11.1+sha512.e519b9f7639869dc8d5c3c5dfef73b3f091094b0a006d7317353c72b124e80e1afd429732e28705ad6bfa1ee879c1fce46c128ccebd3192101f43dd67c667912"
+    "packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac"
 }

@@ -1,7 +1,21 @@
 # CLAUDE.md
 
-このファイルは、Claude Code (claude.ai/code) がこのリポジトリで作業する際のガイダンスを提供します。
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 回答は必ず日本語で行ってください。
+
+## 詳細な知識管理
+
+このプロジェクトでは `.claude/` ディレクトリに体系的な知識管理システムを構築しています：
+
+- **`.claude/context.md`** - プロジェクトの背景・制約・位置づけ
+- **`.claude/project-knowledge.md`** - 技術的知見・アーキテクチャパターン
+- **`.claude/common-patterns.md`** - 頻用コマンドパターン・実用的な操作例
+- **`.claude/project-improvements.md`** - 改善履歴・教訓
+- **`.claude/debug-log.md`** - 重要なデバッグ記録・トラブルシューティング
+
+作業開始時は、これらのファイルを参照して詳細な背景知識を確認してください。
+
+**重要**: 新しい実装や重要な決定を行った際は、該当するファイルを更新してください。知識の継続的な蓄積により、将来の開発効率と品質が向上します。
 
 ## プロジェクト構造
 
@@ -54,12 +68,14 @@ pnpm check-types            # TypeScript型チェック
 pnpm format                 # Prettierフォーマット
 ```
 
-### その他
+### バージョン管理・ユーティリティ
 
 ```bash
 pnpm changeset              # バージョニング用チェンジセット作成
 pnpm version-packages       # パッケージバージョン更新
-pnpm coupling-graph         # 依存関係グラフ生成（graph.svg）
+pnpm release                # パッケージ公開
+pnpm generate:graph         # 依存関係グラフ生成（graph.svg）
+pnpm clean-install          # 依存関係クリーンインストール
 pnpm generate:index         # インデックスファイル生成
 ```
 
@@ -274,3 +290,11 @@ className={cn(
 4. **パフォーマンス**: RSC・Suspense・dynamic import で最適化
 5. **フォーム**: Zod × react-hook-form
 6. **品質管理**: エラー処理 → アクセシビリティ → テスト
+
+## 注意事項
+
+- **Node.js要件**: 20以上必須
+- **パッケージマネージャー**: pnpm@10.12.1+使用（npmやyarnは使用不可）
+- **Huskyプリコミットフック**: 有効化済み（`pnpm prepare`で初期化）
+- **型エラー**: 作業完了前に必ず解決（`pnpm check-types`で確認）
+- **ESLintエラー**: ignoreでの回避禁止、根本的解決必須

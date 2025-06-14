@@ -78,20 +78,20 @@ export const defaultMetadata: Metadata = {
 }
 
 interface GenerateMetadataProps {
-    title?: string
-    description?: string
-    image?: string
-    url?: string
-    type?: 'website' | 'article' | 'profile'
-    publishedTime?: string
-    modifiedTime?: string
-    section?: string
-    tags?: string[]
-    authors?: Array<{ name: string; url?: string }>
-    jsonLd?: WithContext<Thing> | WithContext<Thing>[]
-    noindex?: boolean
-    nofollow?: boolean
-    canonical?: string
+    title?: string | undefined
+    description?: string | undefined
+    image?: string | undefined
+    url?: string | undefined
+    type?: 'website' | 'article' | 'profile' | undefined
+    publishedTime?: string | undefined
+    modifiedTime?: string | undefined
+    section?: string | undefined
+    tags?: string[] | undefined
+    authors?: Array<{ name: string; url?: string }> | undefined
+    jsonLd?: WithContext<Thing> | WithContext<Thing>[] | undefined
+    noindex?: boolean | undefined
+    nofollow?: boolean | undefined
+    canonical?: string | undefined
 }
 
 export const generateMetadata = ({

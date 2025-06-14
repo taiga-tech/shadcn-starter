@@ -3,7 +3,6 @@ import withPlugins from 'next-compose-plugins'
 import { withContentlayer } from 'next-contentlayer2'
 
 const config = withPlugins([[withContentlayer]], {
-    swcMinify: true,
     trailingSlash: true,
     reactStrictMode: true,
     poweredByHeader: false,
