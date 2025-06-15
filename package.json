@@ -36,6 +36,7 @@
         "husky": "^9.1.7",
         "prettier": "^3.5.3",
         "prettier-plugin-tailwindcss": "^0.6.12",
+        "task-master-ai": "^0.17.0",
         "turbo": "^2.5.4",
         "typescript": "^5.8.3"
     },
