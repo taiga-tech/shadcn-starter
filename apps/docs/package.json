@@ -31,7 +31,6 @@
         "eslint": "^9.28.0",
         "eslint-plugin-storybook": "9.0.9",
         "serve": "^14.2.4",
-        "storybook": "^9.0.9",
-        "typescript": "^5.8.3"
+        "storybook": "^9.0.9"
     }
 }
