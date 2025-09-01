@@ -16,8 +16,8 @@
         "lint:fix": "next lint --fix",
         "check-types": "tsc --noEmit",
         "test": "jest",
-        "test:unit": "jest --testPathPattern=__test__/unit",
-        "test:integration": "jest --testPathPattern=__test__/integration",
+        "test:unit": "jest --testPathPatterns=__test__/unit",
+        "test:integration": "jest --testPathPatterns=__test__/integration",
         "test:watch": "jest --watch",
         "test:e2e": "playwright test"
     },

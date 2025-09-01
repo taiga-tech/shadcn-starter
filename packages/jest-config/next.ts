@@ -1,7 +1,6 @@
 import nextJest from 'next/jest'
 
 // unfortunately, need to disambiguate the `Config` namespace @jest/types uses (via next/jest) and the `Config` type we want for typing our config here
-import type { Config as ConfigNamespace } from '@jest/types'
 import type { Config } from 'jest'
 
 import { config as baseConfig } from './base'

@@ -17,7 +17,7 @@
         "check-types": "turbo check-types",
         "lint": "turbo lint",
         "lint:ls": "ls-lint",
-        "format": "prettier --write \"**/*.{js,mjs,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,sass}\" --ignore-path .prettierignore",
+        "format": "prettier --cache --write \"**/*.{js,mjs,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,sass}\" --ignore-path .prettierignore",
         "changeset": "changeset",
         "version-packages": "changeset version",
         "release": "changeset publish",
