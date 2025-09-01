@@ -13,7 +13,6 @@ This guide outlines the typical process for using Task Master to manage software
 Task Master offers two primary ways to interact:
 
 1.  **MCP Server (Recommended for Integrated Tools)**:
-
     - For AI agents and integrated development environments (like Roo Code), interacting via the **MCP server is the preferred method**.
     - The MCP server exposes Task Master functionality through a set of tools (e.g., `get_tasks`, `add_subtask`).
     - This method offers better performance, structured data exchange, and richer error handling compared to CLI parsing.
@@ -107,7 +106,6 @@ Task Master offers two primary ways to interact:
 Taskmaster configuration is managed through two main mechanisms:
 
 1.  **`.taskmaster/config.json` File (Primary):**
-
     - Located in the project root directory.
     - Stores most configuration settings: AI model selections (main, research, fallback), parameters (max tokens, temperature), logging level, default subtasks/priority, project name, etc.
     - **Managed via `task-master models --setup` command.** Do not edit manually unless you know what you are doing.
@@ -182,32 +180,26 @@ Taskmaster configuration is managed through two main mechanisms:
 Once a task has been broken down into subtasks using `expand_task` or similar methods, follow this iterative process for implementation:
 
 1.  **Understand the Goal (Preparation):**
-
     - Use `get_task` / `task-master show <subtaskId>` (see [`taskmaster.md`](mdc:.roo/rules/taskmaster.md)) to thoroughly understand the specific goals and requirements of the subtask.
 
 2.  **Initial Exploration & Planning (Iteration 1):**
-
     - This is the first attempt at creating a concrete implementation plan.
     - Explore the codebase to identify the precise files, functions, and even specific lines of code that will need modification.
     - Determine the intended code changes (diffs) and their locations.
     - Gather _all_ relevant details from this exploration phase.
 
 3.  **Log the Plan:**
-
     - Run `update_subtask` / `task-master update-subtask --id=<subtaskId> --prompt='<detailed plan>'`.
     - Provide the _complete and detailed_ findings from the exploration phase in the prompt. Include file paths, line numbers, proposed diffs, reasoning, and any potential challenges identified. Do not omit details. The goal is to create a rich, timestamped log within the subtask's `details`.
 
 4.  **Verify the Plan:**
-
     - Run `get_task` / `task-master show <subtaskId>` again to confirm that the detailed implementation plan has been successfully appended to the subtask's details.
 
 5.  **Begin Implementation:**
-
     - Set the subtask status using `set_task_status` / `task-master set-status --id=<subtaskId> --status=in-progress`.
     - Start coding based on the logged plan.
 
 6.  **Refine and Log Progress (Iteration 2+):**
-
     - As implementation progresses, you will encounter challenges, discover nuances, or confirm successful approaches.
     - **Before appending new information**: Briefly review the _existing_ details logged in the subtask (using `get_task` or recalling from context) to ensure the update adds fresh insights and avoids redundancy.
     - **Regularly** use `update_subtask` / `task-master update-subtask --id=<subtaskId> --prompt='<update details>\n- What worked...\n- What didn't work...'` to append new findings.
@@ -220,17 +212,14 @@ Once a task has been broken down into subtasks using `expand_task` or similar me
     - The objective is to continuously enrich the subtask's details, creating a log of the implementation journey that helps the AI (and human developers) learn, adapt, and avoid repeating errors.
 
 7.  **Review & Update Rules (Post-Implementation):**
-
     - Once the implementation for the subtask is functionally complete, review all code changes and the relevant chat history.
     - Identify any new or modified code patterns, conventions, or best practices established during the implementation.
     - Create new or update existing rules following internal guidelines (previously linked to `cursor_rules.md` and `self_improve.md`).
 
 8.  **Mark Task Complete:**
-
     - After verifying the implementation and updating any necessary rules, mark the subtask as completed: `set_task_status` / `task-master set-status --id=<subtaskId> --status=done`.
 
 9.  **Commit Changes (If using Git):**
-
     - Stage the relevant code changes and any updated/new rule files (`git add .`).
     - Craft a comprehensive Git commit message summarizing the work done for the subtask, including both code implementation and any rule adjustments.
     - Execute the commit command directly in the terminal (e.g., `git commit -m 'feat(module): Implement feature X for subtask <subtaskId>\n\n- Details about changes...\n- Updated rule Y for pattern Z'`).
