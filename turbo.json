@@ -13,15 +13,12 @@
             "outputs": [".next/**", "!.next/cache/**", "storybook-static/**"]
         },
         "lint": {
-            "dependsOn": ["^lint", "//#lint:ls"]
+            "dependsOn": ["^lint"]
         },
         "//#lint:ls": {
             "cache": false,
             "inputs": [
-                "**/*.{ts,tsx,js,jsx,mjs,json,md,mdx,css,scss,sass,html,yml,yaml,toml}",
-                "!**/node_modules/**",
-                "!**/.next/**",
-                "!**/storybook-static/**"
+                "**/*.{ts,tsx,js,jsx,mjs,json,md,mdx,css,scss,sass,html,yml,yaml,toml}"
             ]
         },
         "check-types": {
