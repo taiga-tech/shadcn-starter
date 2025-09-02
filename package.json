@@ -24,6 +24,7 @@
         "generate:graph": "pnpx madge --extensions js,jsx,ts,tsx,css,md,mdx ./ --exclude '.next|tailwind.config.js|reset.d.ts|prettier.config.js|postcss.config.js|jest.config.ts|playwright.config.ts|next.config.js|next-env.d.ts|instrumentation.ts|eslint.config.js|e2e/|README.md|.storybook/|storybook-static/|src/stories/|.eslintrc.js|__test__/|eslint-config/|jest-config/|typescript-config|coverage' --image graph.svg",
         "generate:index": "pnpx tsx scripts/generate/index-files.ts",
         "clean-install": "pnpx tsx scripts/clean-install.ts",
+        "update-deps": "pnpx tsx scripts/update-dependencies.ts",
         "task-master": "task-master"
     },
     "devDependencies": {
