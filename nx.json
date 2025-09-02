@@ -1,0 +1,54 @@
+{
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "namedInputs": {
+        "sharedGlobals": [
+            "{workspaceRoot}/VERCEL_URL",
+            "{workspaceRoot}/ANALYZE"
+        ],
+        "default": ["{projectRoot}/**/*", "sharedGlobals"]
+    },
+    "targetDefaults": {
+        "dev": {
+            "cache": false
+        },
+        "build": {
+            "dependsOn": ["^build"],
+            "inputs": ["{projectRoot}/**/*", "{projectRoot}/.env*"],
+            "outputs": [
+                "{projectRoot}/.next/**",
+                "!{projectRoot}/.next/cache/**",
+                "{projectRoot}/storybook-static/**"
+            ],
+            "cache": true
+        },
+        "lint": {
+            "dependsOn": ["^lint"],
+            "cache": true
+        },
+        "check-types": {
+            "dependsOn": ["^check-types"],
+            "cache": true
+        },
+        "test": {
+            "dependsOn": ["^test"],
+            "cache": true
+        },
+        "test:unit": {
+            "dependsOn": ["^test:unit"],
+            "outputs": ["{projectRoot}/coverage/**"],
+            "cache": true
+        },
+        "test:integration": {
+            "dependsOn": ["^test:integration"],
+            "cache": true
+        },
+        "test:e2e": {
+            "dependsOn": ["^test:e2e", "build"],
+            "cache": true
+        },
+        "test:all": {
+            "dependsOn": ["test:unit", "test:integration", "test:e2e"],
+            "cache": true
+        }
+    }
+}
