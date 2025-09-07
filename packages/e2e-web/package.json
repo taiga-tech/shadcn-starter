@@ -1,0 +1,24 @@
+{
+    "name": "@workspace/e2e-web",
+    "version": "0.0.0",
+    "type": "module",
+    "private": true,
+    "engines": {
+        "node": ">=20.0.0",
+        "pnpm": ">=8.0.0"
+    },
+    "scripts": {
+        "test:e2e": "playwright test",
+        "test:grep": "playwright test -g \"$GREP\"",
+        "test:uc": "playwright test -g \"@$UC\"",
+        "test:file": "playwright test $FILE",
+        "trace:open": "playwright show-trace ./test-results/**/trace.zip",
+        "codegen": "playwright codegen $E2E_BASE_URL || true",
+        "install:browsers": "playwright install --with-deps"
+    },
+    "devDependencies": {
+        "@playwright/test": "^1.55.0",
+        "@types/node": "^24.3.1",
+        "@workspace/typescript-config": "workspace:*"
+    }
+}

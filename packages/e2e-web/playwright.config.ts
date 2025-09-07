@@ -11,9 +11,9 @@ import { defineConfig, devices } from '@playwright/test'
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-    testDir: './__test__/e2e',
+    testDir: './tests',
 
-    outputDir: './__test__/e2e/test-results',
+    outputDir: './test-results',
 
     testMatch: '*.e2e-spec.ts',
 
@@ -52,7 +52,6 @@ export default defineConfig({
             name: 'Google Chrome',
             use: { ...devices['Desktop Chrome'], channel: 'chrome' },
         },
-
         // {
         //   name: 'chromium',
         //   use: { ...devices['Desktop Chrome'] },
@@ -65,7 +64,6 @@ export default defineConfig({
         //   name: 'webkit',
         //   use: { ...devices['Desktop Safari'] },
         // },
-
         /* Test against mobile viewports. */
         // {
         //   name: 'Mobile Chrome',
@@ -79,7 +77,7 @@ export default defineConfig({
 
     /* Run your local dev server before starting the tests */
     webServer: {
-        command: 'pnpm run dev',
+        command: 'pnpm run --filter web dev',
         url: 'http://localhost:3000',
         reuseExistingServer: true,
     },
