@@ -2,6 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 回答は必ず日本語で行ってください。
+serena mcpを積極的に使用して下さい。
 
 ## 詳細な知識管理
 
@@ -35,6 +36,7 @@ shadcn/ui コンポーネント用のモノレポテンプレートです：
 ### パッケージ
 
 - `packages/ui/` - shadcn/ui + Tailwind CSS 共有UIコンポーネント
+- `packages/e2e-web/` - Webアプリケーション用E2Eテスト（Playwright）
 - `packages/eslint-config/` - 共有 ESLint 設定
 - `packages/typescript-config/` - 共有 TypeScript 設定
 - `packages/jest-config/` - 共有 Jest 設定
@@ -55,7 +57,7 @@ pnpm preview-storybook      # ビルド済みStorybookプレビュー
 pnpm test                   # 全テスト実行
 pnpm test:unit              # ユニットテストのみ
 pnpm test:integration       # インテグレーションテストのみ
-pnpm test:e2e               # E2Eテスト（ビルド必須）
+pnpm test:e2e               # E2Eテスト（開発サーバーで実行）
 pnpm test:all               # 全テストタイプ実行
 ```
 
@@ -117,12 +119,12 @@ Prettier が自動的に以下の順序でインポートをソート：
 
 - **ユニットテスト**: `__test__/unit/` - 純粋関数・コンポーネントテスト
 - **インテグレーションテスト**: `__test__/integration/` - コンポーネント統合
-- **E2Eテスト**: Playwright使用、ビルドステップが必要
+- **E2Eテスト**: `packages/e2e-web/` - Playwright使用、開発サーバーで実行
 - **Jest設定**: `@workspace/jest-config` で共有
 
 #### テスト指針
 
-- **画面**: Playwright で E2Eテスト（ビルド後）
+- **画面**: Playwright で E2Eテスト（`packages/e2e-web/` - 開発サーバーで実行）
 - **コンポーネント**: Storybook でビジュアル・インタラクションテスト
 - **ユーティリティ関数**: Jest でユニットテスト（`lib/` 内の関数）
 - **Server Actions**: Jest でユニットテスト（入力/出力・エラーハンドリング）

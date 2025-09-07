@@ -44,12 +44,15 @@ turbo test:unit --filter=web -- --watch
 ### リリース前のテスト
 
 ```bash
-# E2Eテスト（ビルド必須）
-pnpm build
+# E2Eテスト（開発サーバーで実行）
 pnpm test:e2e
 
 # 全テスト実行
 pnpm test:all
+
+# 独立したE2Eテストパッケージでの直接実行
+cd packages/e2e-web
+pnpm test:e2e
 ```
 
 ## shadcn/ui コンポーネント管理
@@ -259,7 +262,23 @@ pnpm check-types && pnpm lint && pnpm test:unit && pnpm build
 ### 新機能開発完了時
 
 ```bash
-pnpm format && pnpm lint --fix && pnpm test:all && pnpm build
+pnpm format && pnpm lint --fix && pnpm test:all
+```
+
+### E2Eテスト専用コマンド
+
+```bash
+# 特定のE2Eテストファイルを実行
+cd packages/e2e-web
+pnpm test:e2e -- tests/specific-test.e2e-spec.ts
+
+# E2Eテストのデバッグモード
+cd packages/e2e-web
+pnpm test:e2e -- --debug
+
+# E2EテストのUIモード
+cd packages/e2e-web
+pnpm test:e2e -- --ui
 ```
 
 ### トラブルシューティング

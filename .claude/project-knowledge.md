@@ -5,7 +5,7 @@
 ### タスク依存関係
 
 - `build`: `^build` - 依存パッケージのビルド完了後に実行
-- `test:e2e`: `build` - ビルド完了が前提（静的サイト必要）
+- `test:e2e`: `^test:e2e` - 他パッケージのE2Eテスト完了後に実行（開発サーバーベース）
 - `lint`: `^lint` + `//#lint:ls` - パッケージのlintとファイル命名規則チェック
 
 ### キャッシュ戦略
@@ -92,16 +92,21 @@ const buttonVariants = cva('inline-flex items-center justify-center', {
 ### テストタイプ別配置
 
 ```
+# アプリケーション内テスト
 __test__/
 ├── unit/          # 純粋関数・ユーティリティ
-├── integration/   # コンポーネント統合テスト
-└── e2e/           # Playwright E2Eテスト
+└── integration/   # コンポーネント統合テスト
+
+# 独立したE2Eテストパッケージ
+packages/e2e-web/
+└── tests/         # Playwright E2Eテスト
 ```
 
 ### E2Eテスト前提条件
 
-- ビルド完了必須（`pnpm build`）
-- 静的サイト生成後のテスト実行
+- 開発サーバー起動が前提（Playwrightが自動起動）
+- `packages/e2e-web/` で独立したテスト環境
+- ビルド不要で高速なテストサイクル
 
 ## パフォーマンス最適化パターン
 

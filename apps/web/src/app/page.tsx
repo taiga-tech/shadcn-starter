@@ -13,17 +13,17 @@ import { ButtonLink } from '@/components/button-link'
 
 // カスタムCSSアニメーション
 const customStyles = `
-  @keyframes gradient {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-  @keyframes fade-in {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .animate-gradient { animation: gradient 6s ease infinite; }
-  .animate-fade-in { animation: fade-in 1s ease-out; }
-  .bg-300% { background-size: 300% 300%; }
+    @keyframes gradient {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+    @keyframes fade-in {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-gradient { animation: gradient 6s ease infinite; }
+    .animate-fade-in { animation: fade-in 1s ease-out; }
+    .bg-300% { background-size: 300% 300%; }
 `
 
 // 共通スタイル定数
@@ -100,7 +100,7 @@ const PROJECT_ITEMS = [
         title: 'テスト環境',
         items: [
             'Jest（ユニット）',
-            'Playwright（E2E）',
+            'Playwright（packages/e2e-web）',
             'Storybook（視覚）',
             'Testing Library',
         ],
@@ -165,8 +165,8 @@ const QUICK_START_ITEMS = [
         commands: [
             { comment: '# 全テスト実行', command: 'pnpm test' },
             {
-                comment: '# E2Eテスト（ビルド必要）',
-                command: 'pnpm build && pnpm test:e2e',
+                comment: '# E2Eテスト（開発サーバーで実行）',
+                command: 'pnpm test:e2e',
             },
         ],
         description:
@@ -521,9 +521,15 @@ const Page = () => {
                                         </span>
                                     </div>
                                     <div className="text-gray-400 transition-colors duration-200 hover:text-gray-300">
+                                        │ ├──
+                                        <span className="text-green-400">
+                                            🧪 e2e-web/ # E2Eテストパッケージ
+                                        </span>
+                                    </div>
+                                    <div className="text-gray-400 transition-colors duration-200 hover:text-gray-300">
                                         │ └──
                                         <span className="text-green-400">
-                                            🧪 jest-config/ # Jest設定
+                                            ⚙️ jest-config/ # Jest設定
                                         </span>
                                     </div>
                                     <div className="text-gray-400 transition-colors duration-200 hover:text-gray-300">
