@@ -1,0 +1,67 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+
+import { useTheme } from 'next-themes'
+
+import { Button } from '@workspace/ui/components/button'
+import { cn } from '@workspace/ui/lib/utils'
+import { Moon, Sun } from 'lucide-react'
+
+interface ThemeToggleProps {
+    className?: string
+    variant?: 'default' | 'outline' | 'ghost'
+    size?: 'default' | 'sm' | 'lg' | 'icon'
+}
+
+const ThemeToggle = ({
+    className,
+    variant = 'ghost',
+    size = 'icon',
+}: ThemeToggleProps) => {
+    const [mounted, setMounted] = useState(false)
+    const { theme, setTheme } = useTheme()
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    if (!mounted) {
+        return (
+            <Button
+                variant={variant}
+                size={size}
+                className={cn('h-9 w-9', className)}
+                disabled
+            >
+                <div className="h-4 w-4" />
+                <span className="sr-only">テーマ切り替え</span>
+            </Button>
+        )
+    }
+
+    const toggleTheme = () => {
+        setTheme(theme === 'dark' ? 'light' : 'dark')
+    }
+
+    return (
+        <Button
+            variant={variant}
+            size={size}
+            onClick={toggleTheme}
+            className={cn(
+                'h-9 w-9 transition-all duration-200',
+                'hover:bg-zinc-100 dark:hover:bg-zinc-800',
+                'focus-visible:ring-2 focus-visible:ring-zinc-400 dark:focus-visible:ring-zinc-600',
+                className
+            )}
+            aria-label="テーマを切り替え"
+        >
+            <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <span className="sr-only">テーマ切り替え</span>
+        </Button>
+    )
+}
+
+export default ThemeToggle

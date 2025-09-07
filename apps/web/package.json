@@ -24,6 +24,7 @@
         "@next/bundle-analyzer": "15.5.2",
         "@workspace/ui": "workspace:*",
         "class-variance-authority": "0.7.1",
+        "framer-motion": "^12.23.12",
         "lucide-react": "0.542.0",
         "next": "15.5.2",
         "next-compose-plugins": "2.2.1",

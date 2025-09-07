@@ -8,43 +8,24 @@ import {
     CardTitle,
 } from '@workspace/ui/components/card'
 import { cn } from '@workspace/ui/lib/utils'
+import { Shield, Star, TrendingUp, Zap } from 'lucide-react'
+
+import {
+    ARCHITECTURE_BENEFITS,
+    COMPARISON_DATA,
+    PERFORMANCE_METRICS,
+    TECH_STACK_ITEMS,
+} from '@/const/landing-data'
 
 import { ButtonLink } from '@/components/button-link'
-
-// カスタムCSSアニメーション
-const customStyles = `
-    @keyframes gradient {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-    }
-    @keyframes fade-in {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-gradient { animation: gradient 6s ease infinite; }
-    .animate-fade-in { animation: fade-in 1s ease-out; }
-    .bg-300% { background-size: 300% 300%; }
-`
-
-// 共通スタイル定数
-const GLASS_CARD_STYLES =
-    'border-violet-500/20 bg-black/40 backdrop-blur-md transition-all duration-500 hover:border-violet-400/60 hover:shadow-lg hover:shadow-violet-500/10 hover:scale-[1.02] group'
-const GRADIENT_HEADING_STYLES =
-    'bg-gradient-to-r from-white via-violet-100 to-violet-300 bg-clip-text text-transparent'
-const GRADIENT_BADGE_STYLES = 'text-white backdrop-blur-sm'
-const CODE_BLOCK_STYLES = 'rounded-lg bg-gray-900/50 p-4 font-mono text-sm'
-const PRIMARY_BUTTON_STYLES =
-    'border-0 bg-gradient-to-r from-violet-600 to-purple-600 shadow-lg shadow-purple-500/25 backdrop-blur-sm hover:from-violet-700 hover:to-purple-700 hover:shadow-xl hover:shadow-purple-500/40 text-lg px-8 py-4 text-white font-semibold'
-const OUTLINE_BUTTON_STYLES =
-    'border-violet-400/50 text-violet-300 backdrop-blur-sm hover:bg-violet-500/10 hover:border-violet-400/80 hover:shadow-lg hover:shadow-violet-500/20 text-lg px-8 py-4'
+import CopyableCode from '@/components/copyable-code'
+import ScrollReveal from '@/components/scroll-reveal'
+import ThemeToggle from '@/components/theme-toggle'
 
 // データ定数
 const PROJECT_ITEMS = [
     {
-        badge: {
-            text: 'Apps',
-            gradient: 'from-violet-600/70 to-purple-600/70',
-        },
+        badge: 'Apps',
         title: 'Webアプリケーション',
         items: [
             'Next.js 15 + React 19',
@@ -54,10 +35,7 @@ const PROJECT_ITEMS = [
         ],
     },
     {
-        badge: {
-            text: 'Docs',
-            gradient: 'from-indigo-600/70 to-violet-600/70',
-        },
+        badge: 'Docs',
         title: 'Storybook',
         items: [
             'コンポーネント一覧',
@@ -67,23 +45,17 @@ const PROJECT_ITEMS = [
         ],
     },
     {
-        badge: { text: 'UI', gradient: 'from-purple-600/70 to-pink-600/70' },
+        badge: 'UI',
         title: 'コンポーネント',
         items: ['shadcn/ui', 'Radix UI', 'Tailwind CSS', 'クラスバリアント'],
     },
     {
-        badge: {
-            text: 'Config',
-            gradient: 'from-cyan-600/70 to-violet-600/70',
-        },
+        badge: 'Config',
         title: '共有設定',
         items: ['ESLint設定', 'TypeScript設定', 'Jest設定', 'Prettier設定'],
     },
     {
-        badge: {
-            text: 'Tools',
-            gradient: 'from-emerald-600/70 to-violet-600/70',
-        },
+        badge: 'Tools',
         title: '開発ツール',
         items: [
             'Turborepo',
@@ -93,10 +65,7 @@ const PROJECT_ITEMS = [
         ],
     },
     {
-        badge: {
-            text: 'Test',
-            gradient: 'from-orange-600/70 to-violet-600/70',
-        },
+        badge: 'Test',
         title: 'テスト環境',
         items: [
             'Jest（ユニット）',
@@ -112,117 +81,81 @@ const FEATURE_ITEMS = [
         title: 'モノレポ構成',
         description:
             'Turborepo + pnpm workspaces による効率的なマルチパッケージ管理。共有設定とコンポーネントの再利用性を最大化。',
+        icon: <TrendingUp className="h-6 w-6" />,
     },
     {
         title: 'Next.js 15 + React 19',
         description:
             '最新のNext.js App RouterとReact 19の新機能を活用。 Server ComponentsとServer Actionsでパフォーマンス最適化。',
+        icon: <Zap className="h-6 w-6" />,
     },
     {
         title: '型安全な開発',
         description:
             'TypeScript + Zod によるエンドツーエンドの型安全性。ESLintとPrettierで一貫したコード品質を維持。',
+        icon: <Shield className="h-6 w-6" />,
     },
     {
         title: '包括的テスト',
         description:
             'ユニット・インテグレーション・E2E・ビジュアルテストを統合。CI/CDパイプラインでの自動品質チェック。',
+        icon: <Star className="h-6 w-6" />,
     },
 ]
 
 const QUICK_START_ITEMS = [
     {
         title: 'インストール',
-        commands: [
-            {
-                comment: '# リポジトリをクローン',
-                command: 'git clone [repository-url]',
-            },
-            { comment: '# 依存関係をインストール', command: 'pnpm install' },
-            { comment: '# 開発サーバーを起動', command: 'pnpm dev' },
-        ],
+        commands: ['git clone [repository-url]', 'pnpm install', 'pnpm dev'],
         description:
             'すべてのアプリケーション（Web、Storybook）が同時に起動されます。',
     },
     {
         title: 'コンポーネント追加',
         commands: [
-            {
-                comment: '# shadcn/uiコンポーネントを追加',
-                command: 'pnpm dlx shadcn@latest add button -c apps/web',
-            },
-            {
-                comment: '# 使用例',
-                command:
-                    "import { Button } from '@workspace/ui/components/button'",
-                isImport: true,
-            },
+            'pnpm dlx shadcn@latest add button -c apps/web',
+            "import { Button } from '@workspace/ui/components/button'",
         ],
         description: 'コンポーネントは自動的に共有UIパッケージに配置されます。',
     },
     {
         title: 'テスト実行',
-        commands: [
-            { comment: '# 全テスト実行', command: 'pnpm test' },
-            {
-                comment: '# E2Eテスト（開発サーバーで実行）',
-                command: 'pnpm test:e2e',
-            },
-        ],
+        commands: ['pnpm test', 'pnpm test:e2e'],
         description:
             'ユニット、インテグレーション、E2Eテストが含まれています。',
     },
     {
         title: 'コード品質',
-        commands: [
-            { comment: '# リント実行', command: 'pnpm lint' },
-            { comment: '# 型チェック', command: 'pnpm check-types' },
-            { comment: '# フォーマット', command: 'pnpm format' },
-        ],
+        commands: ['pnpm lint', 'pnpm check-types', 'pnpm format'],
         description: 'ESLint、TypeScript、Prettierで品質を保証します。',
     },
 ]
 
 // コンポーネント
-const GradientBadge = memo(
-    ({ text, gradient }: { text: string; gradient: string }) => (
-        <Badge
-            className={cn('bg-gradient-to-r', gradient, GRADIENT_BADGE_STYLES)}
-            variant="secondary"
-        >
-            {text}
-        </Badge>
-    )
-)
-
-GradientBadge.displayName = 'GradientBadge'
-
 const ProjectCard = memo(
     ({ item }: { item: (typeof PROJECT_ITEMS)[number] }) => (
-        <Card className={GLASS_CARD_STYLES}>
-            <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-violet-500/5 to-purple-500/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
-            <CardHeader className="relative z-10">
-                <CardTitle className="flex items-center gap-3 text-white transition-colors duration-300 group-hover:text-violet-100">
-                    <div className="transform transition-transform duration-300 group-hover:scale-110">
-                        <GradientBadge
-                            text={item.badge.text}
-                            gradient={item.badge.gradient}
-                        />
-                    </div>
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">
+        <Card className="group border-zinc-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-800 dark:hover:border-zinc-600 dark:hover:shadow-xl">
+            <CardHeader className="pb-3">
+                <div className="flex items-center gap-3">
+                    <Badge
+                        variant="secondary"
+                        className="bg-gradient-to-r from-zinc-100 to-zinc-200 text-zinc-700 transition-colors group-hover:from-zinc-200 group-hover:to-zinc-300 dark:from-zinc-700 dark:to-zinc-600 dark:text-zinc-200 dark:group-hover:from-zinc-600 dark:group-hover:to-zinc-500"
+                    >
+                        {item.badge}
+                    </Badge>
+                    <CardTitle className="text-lg text-zinc-900 transition-colors group-hover:text-zinc-800 dark:text-zinc-100 dark:group-hover:text-zinc-200">
                         {item.title}
-                    </span>
-                </CardTitle>
+                    </CardTitle>
+                </div>
             </CardHeader>
-            <CardContent className="relative z-10">
-                <ul className="space-y-3 text-sm text-gray-300">
+            <CardContent>
+                <ul className="space-y-3 text-sm text-zinc-600 dark:text-zinc-300">
                     {item.items.map((listItem, index) => (
                         <li
                             key={index}
-                            className="flex items-center gap-2 transition-colors duration-300 group-hover:text-gray-200"
-                            style={{ animationDelay: `${index * 100}ms` }}
+                            className="flex items-center gap-3 transition-colors group-hover:text-zinc-700 dark:group-hover:text-zinc-200"
                         >
-                            <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-violet-400 to-purple-400 transition-all duration-300 group-hover:shadow-sm group-hover:shadow-violet-400/50"></span>
+                            <div className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-zinc-400 to-zinc-500 transition-all group-hover:scale-125 dark:from-zinc-500 dark:to-zinc-400"></div>
                             {listItem}
                         </li>
                     ))}
@@ -236,20 +169,19 @@ ProjectCard.displayName = 'ProjectCard'
 
 const FeatureCard = memo(
     ({ item }: { item: (typeof FEATURE_ITEMS)[number] }) => (
-        <Card className={GLASS_CARD_STYLES}>
-            <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-violet-500/5 to-purple-500/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
-            <CardHeader className="relative z-10">
-                <CardTitle className="flex items-center gap-2 text-white transition-colors duration-300 group-hover:text-violet-100">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-r from-violet-500/20 to-purple-500/20 transition-transform duration-300 group-hover:scale-110">
-                        ✨
-                    </span>
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">
+        <Card className="group border-zinc-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-800 dark:hover:border-zinc-600 dark:hover:shadow-xl">
+            <CardHeader className="pb-4">
+                <div className="mb-2 flex items-center gap-3">
+                    <div className="rounded-lg bg-zinc-100 p-2 text-zinc-600 transition-all duration-300 group-hover:scale-110 group-hover:bg-zinc-900 group-hover:text-white dark:bg-zinc-700 dark:text-zinc-300 dark:group-hover:bg-zinc-100 dark:group-hover:text-zinc-900">
+                        {item.icon}
+                    </div>
+                    <CardTitle className="text-lg text-zinc-900 transition-colors group-hover:text-zinc-800 dark:text-zinc-100 dark:group-hover:text-zinc-200">
                         {item.title}
-                    </span>
-                </CardTitle>
+                    </CardTitle>
+                </div>
             </CardHeader>
-            <CardContent className="relative z-10">
-                <p className="leading-relaxed text-gray-300 transition-colors duration-300 group-hover:text-gray-200">
+            <CardContent>
+                <p className="text-sm leading-relaxed text-zinc-600 transition-colors group-hover:text-zinc-700 dark:text-zinc-300 dark:group-hover:text-zinc-200">
                     {item.description}
                 </p>
             </CardContent>
@@ -261,59 +193,18 @@ FeatureCard.displayName = 'FeatureCard'
 
 const QuickStartCard = memo(
     ({ item }: { item: (typeof QUICK_START_ITEMS)[number] }) => (
-        <Card className={cn(GLASS_CARD_STYLES, 'relative overflow-hidden')}>
-            <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-violet-500/5 to-purple-500/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
-            <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-violet-500 to-purple-500 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
-
-            <CardHeader className="relative z-10">
-                <CardTitle className="flex items-center gap-3 text-white transition-colors duration-300 group-hover:text-violet-100">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-r from-violet-500/20 to-purple-500/20 transition-transform duration-300 group-hover:scale-110">
-                        ⚡
-                    </span>
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">
-                        {item.title}
-                    </span>
+        <Card className="group border-zinc-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-800 dark:hover:border-zinc-600 dark:hover:shadow-xl">
+            <CardHeader>
+                <CardTitle className="text-lg text-zinc-900 transition-colors group-hover:text-zinc-800 dark:text-zinc-100 dark:group-hover:text-zinc-200">
+                    {item.title}
                 </CardTitle>
             </CardHeader>
-
-            <CardContent className="relative z-10 space-y-4">
-                <div
-                    className={cn(
-                        CODE_BLOCK_STYLES,
-                        'relative transition-colors duration-300 group-hover:bg-gray-900/70'
-                    )}
-                >
-                    <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-violet-500/5 to-purple-500/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
-                    <div className="relative z-10">
-                        {item.commands.map((cmd, index) => (
-                            <div
-                                key={index}
-                                className="group/command rounded p-1 transition-colors duration-200 hover:bg-gray-800/30"
-                            >
-                                {index > 0 && <div className="mt-3" />}
-                                <div className="mb-1 text-xs text-gray-400 transition-colors duration-200 group-hover/command:text-gray-300">
-                                    {cmd.comment}
-                                </div>
-                                <div
-                                    className={cn(
-                                        'relative font-mono transition-colors duration-200',
-                                        cmd.isImport
-                                            ? 'text-green-400 group-hover/command:text-green-300'
-                                            : 'text-violet-300 group-hover/command:text-violet-200'
-                                    )}
-                                >
-                                    <span className="relative z-10">
-                                        {cmd.command}
-                                    </span>
-                                    {!cmd.isImport && (
-                                        <div className="absolute inset-y-0 left-0 w-1 rounded bg-gradient-to-b from-violet-500 to-purple-500 opacity-0 transition-opacity duration-200 group-hover/command:opacity-100"></div>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <p className="text-sm leading-relaxed text-gray-300 transition-colors duration-300 group-hover:text-gray-200">
+            <CardContent className="space-y-4">
+                <CopyableCode
+                    code={item.commands}
+                    className="transition-all duration-300 group-hover:bg-zinc-100 dark:group-hover:bg-zinc-700"
+                />
+                <p className="text-sm text-zinc-600 transition-colors group-hover:text-zinc-700 dark:text-zinc-300 dark:group-hover:text-zinc-200">
                     {item.description}
                 </p>
             </CardContent>
@@ -323,16 +214,111 @@ const QuickStartCard = memo(
 
 QuickStartCard.displayName = 'QuickStartCard'
 
+const TechStackCard = memo(
+    ({ item }: { item: (typeof TECH_STACK_ITEMS)[number] }) => (
+        <Card className="group border-zinc-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-800 dark:hover:border-zinc-600 dark:hover:shadow-xl">
+            <CardHeader className="pb-4">
+                <div className="flex items-center gap-3">
+                    <div className="text-2xl transition-transform duration-300 group-hover:scale-110">
+                        {item.icon}
+                    </div>
+                    <CardTitle className="text-xl text-zinc-900 transition-colors group-hover:text-zinc-800 dark:text-zinc-100 dark:group-hover:text-zinc-200">
+                        {item.category}
+                    </CardTitle>
+                </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                {item.technologies.map((tech, index) => (
+                    <div
+                        key={index}
+                        className="border-l-2 border-zinc-200 pl-4 transition-all duration-300 group-hover:border-zinc-400 dark:border-zinc-700 dark:group-hover:border-zinc-500"
+                    >
+                        <div className="mb-1 flex items-center gap-2">
+                            <h4 className="font-semibold text-zinc-900 transition-colors group-hover:text-zinc-800 dark:text-zinc-100 dark:group-hover:text-zinc-200">
+                                {tech.name}
+                            </h4>
+                            <Badge
+                                variant="outline"
+                                className="text-xs dark:border-zinc-600"
+                            >
+                                {tech.version}
+                            </Badge>
+                        </div>
+                        <p className="mb-2 text-sm text-zinc-600 transition-colors group-hover:text-zinc-700 dark:text-zinc-300 dark:group-hover:text-zinc-200">
+                            {tech.description}
+                        </p>
+                        <div className="flex flex-wrap gap-1">
+                            {tech.features.map((feature, fIndex) => (
+                                <Badge
+                                    key={fIndex}
+                                    variant="secondary"
+                                    className="bg-zinc-100 text-xs hover:bg-zinc-200 dark:bg-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-600"
+                                >
+                                    {feature}
+                                </Badge>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </CardContent>
+        </Card>
+    )
+)
+
+TechStackCard.displayName = 'TechStackCard'
+
+const PerformanceMetric = memo(
+    ({ metric }: { metric: (typeof PERFORMANCE_METRICS)[number] }) => {
+        const getStatusColor = (status: string) => {
+            switch (status) {
+                case 'excellent':
+                    return 'text-green-600 bg-green-50 border-green-200'
+                case 'good':
+                    return 'text-blue-600 bg-blue-50 border-blue-200'
+                default:
+                    return 'text-yellow-600 bg-yellow-50 border-yellow-200'
+            }
+        }
+
+        return (
+            <div className="group rounded-lg border border-zinc-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-800 dark:hover:border-zinc-600 dark:hover:shadow-xl">
+                <div className="mb-2 flex items-center justify-between">
+                    <h4 className="font-semibold text-zinc-900 transition-colors group-hover:text-zinc-800 dark:text-zinc-100 dark:group-hover:text-zinc-200">
+                        {metric.metric}
+                    </h4>
+                    <div
+                        className={cn(
+                            'rounded-full border px-2 py-1 text-xs font-medium transition-all duration-300',
+                            getStatusColor(metric.status)
+                        )}
+                    >
+                        {metric.status}
+                    </div>
+                </div>
+                <div className="mb-1 flex items-center gap-4">
+                    <span className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+                        {metric.value}
+                    </span>
+                    <span className="text-sm text-zinc-500 dark:text-zinc-400">
+                        benchmark: {metric.benchmark}
+                    </span>
+                </div>
+                <p className="text-sm text-zinc-600 transition-colors group-hover:text-zinc-700 dark:text-zinc-300 dark:group-hover:text-zinc-200">
+                    {metric.description}
+                </p>
+            </div>
+        )
+    }
+)
+
+PerformanceMetric.displayName = 'PerformanceMetric'
+
 const SectionHeading = memo(({ children }: { children: React.ReactNode }) => (
-    <div className="relative mb-12 text-center">
-        <div className="absolute -top-4 left-1/2 h-1 w-32 -translate-x-1/2 bg-gradient-to-r from-transparent via-violet-500/50 to-transparent"></div>
-        <h2 className="relative inline-block text-4xl font-bold">
-            <span className={cn('relative z-10', GRADIENT_HEADING_STYLES)}>
-                {children}
-            </span>
-            <div className="absolute -inset-2 -z-10 rounded-lg bg-gradient-to-r from-purple-600/10 to-violet-600/10 blur-lg"></div>
+    <div className="mb-16 text-center">
+        <h2 className="mb-4 text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+            {children}
         </h2>
-        <div className="absolute -bottom-4 left-1/2 h-0.5 w-16 -translate-x-1/2 bg-gradient-to-r from-violet-500 to-purple-500"></div>
+        <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-zinc-400 to-zinc-600 dark:from-zinc-500 dark:to-zinc-400"></div>
     </div>
 ))
 
@@ -340,237 +326,335 @@ SectionHeading.displayName = 'SectionHeading'
 
 const Page = () => {
     return (
-        <>
-            <style dangerouslySetInnerHTML={{ __html: customStyles }} />
-            <div className="relative min-h-svh overflow-hidden bg-black text-white">
-                {/* 動的背景エフェクト */}
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-violet-800/15 to-indigo-900/30"></div>
-                <div className="absolute inset-0 animate-pulse bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-600/20 via-transparent to-transparent"></div>
-                <div className="absolute inset-0 animate-pulse bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-violet-600/20 via-transparent to-transparent [animation-delay:1s]"></div>
-                <div className="absolute inset-0 animate-ping bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-purple-500/5 to-transparent [animation-duration:4s]"></div>
+        <div className="min-h-screen bg-gradient-to-br from-white via-zinc-50 to-zinc-100 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-700">
+            {/* Theme Toggle */}
+            <div className="fixed right-4 top-4 z-50">
+                <ThemeToggle className="shadow-lg dark:shadow-zinc-700/50" />
+            </div>
 
-                {/* グリッドパターン */}
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzFfMikiPgo8cGF0aCBkPSJNMCAwSDQwVjQwSDBWMFoiIGZpbGw9InVybCgjcGFpbnQwX3JhZGlhbF8xXzIpIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF8xXzIiPgo8cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjxyYWRpYWxHcmFkaWVudCBpZD0icGFpbnQwX3JhZGlhbF8xXzIiIGN4PSIyMCIgY3k9IjIwIiByPSIyMCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjOEI1Q0Y2Ii8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzhCNUNGNiIgc3RvcC1vcGFjaXR5PSIwIi8+CjwvcmFkaWFsR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+')] opacity-30"></div>
-                <main className="container relative z-10 mx-auto px-4 py-12">
-                    <section className="relative mb-20 text-center">
-                        {/* ヒーローグロー効果 */}
-                        <div className="absolute -top-10 left-1/2 h-96 w-96 -translate-x-1/2 animate-pulse rounded-full bg-gradient-to-r from-purple-600/20 to-violet-600/20 blur-3xl"></div>
-
-                        <div className="relative z-10">
-                            <div className="animate-fade-in mb-6 inline-flex items-center gap-3">
-                                <Badge
-                                    className="border-violet-400/50 bg-violet-500/10 text-violet-300 shadow-lg shadow-violet-500/25 backdrop-blur-sm transition-all duration-300 hover:bg-violet-500/20"
-                                    variant="outline"
-                                >
-                                    <span className="mr-2 inline-block h-2 w-2 animate-pulse rounded-full bg-emerald-400"></span>
-                                    v1.0.0
-                                </Badge>
-                                <Badge className="bg-gradient-to-r from-purple-600/80 to-violet-600/80 text-white shadow-lg shadow-purple-500/25 backdrop-blur-sm transition-all duration-300 hover:from-purple-600 hover:to-violet-600">
-                                    ✨ モノレポテンプレート
-                                </Badge>
-                            </div>
-
-                            <h1 className="relative mb-8 text-5xl font-bold tracking-tight md:text-7xl">
-                                <span className="animate-gradient bg-300% relative inline-block bg-gradient-to-r from-white via-violet-100 to-purple-200 bg-clip-text text-transparent">
-                                    shadcn/ui Starter
-                                </span>
-                                <div className="absolute -inset-1 -z-10 animate-pulse bg-gradient-to-r from-purple-600/20 to-violet-600/20 blur-lg"></div>
-                            </h1>
-
-                            <p className="mx-auto mb-10 max-w-3xl text-xl leading-relaxed text-gray-300 md:text-2xl">
-                                <span className="bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent">
-                                    Next.js 15 + React 19 + Turborepo を使用した
-                                </span>
-                                <br />
-                                <span className="bg-gradient-to-r from-violet-300 to-purple-300 bg-clip-text font-medium text-transparent">
-                                    モダンなUIコンポーネントライブラリテンプレート
-                                </span>
-                            </p>
-
-                            <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
-                                <ButtonLink
-                                    href="#quick-start"
-                                    size="lg"
-                                    className={cn(
-                                        PRIMARY_BUTTON_STYLES,
-                                        'group transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25'
-                                    )}
-                                >
-                                    <span className="flex items-center gap-2">
-                                        🚀 開発を開始
-                                        <span className="transition-transform duration-300 group-hover:translate-x-1">
-                                            →
-                                        </span>
-                                    </span>
-                                </ButtonLink>
-                                <ButtonLink
-                                    href="https://storybook.js.org/"
-                                    variant="outline"
-                                    size="lg"
-                                    external
-                                    className={cn(
-                                        OUTLINE_BUTTON_STYLES,
-                                        'group transform transition-all duration-300 hover:scale-105'
-                                    )}
-                                >
-                                    <span className="flex items-center gap-2">
-                                        📚 ドキュメント
-                                        <span className="transition-transform duration-300 group-hover:rotate-12">
-                                            📖
-                                        </span>
-                                    </span>
-                                </ButtonLink>
-                            </div>
-
-                            {/* フローティング要素 */}
-                            <div className="absolute left-10 top-20 hidden h-4 w-4 animate-bounce rounded-full bg-purple-500/30 [animation-delay:0.5s] lg:block"></div>
-                            <div className="absolute right-16 top-32 hidden h-3 w-3 animate-bounce rounded-full bg-violet-500/30 [animation-delay:1s] lg:block"></div>
-                            <div className="absolute bottom-10 left-20 hidden h-2 w-2 animate-bounce rounded-full bg-indigo-500/30 [animation-delay:1.5s] lg:block"></div>
-                        </div>
-                    </section>
-
-                    <section className="mb-16">
-                        <SectionHeading>プロジェクト構成</SectionHeading>
-                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                            {PROJECT_ITEMS.map((item, index) => (
-                                <ProjectCard key={index} item={item} />
-                            ))}
-                        </div>
-                    </section>
-
-                    <section className="mb-16">
-                        <SectionHeading>主な機能</SectionHeading>
-                        <div className="grid gap-8 md:grid-cols-2">
-                            {FEATURE_ITEMS.map((item, index) => (
-                                <FeatureCard key={index} item={item} />
-                            ))}
-                        </div>
-                    </section>
-
-                    <section id="quick-start" className="mb-16 scroll-mt-20">
-                        <SectionHeading>クイックスタート</SectionHeading>
-                        <div className="grid gap-8 lg:grid-cols-2">
-                            {QUICK_START_ITEMS.map((item, index) => (
-                                <QuickStartCard key={index} item={item} />
-                            ))}
+            <main className="container mx-auto px-4 py-16">
+                {/* Hero Section */}
+                <ScrollReveal>
+                    <section className="mb-32 text-center">
+                        <div className="mb-8 inline-flex items-center gap-3">
+                            <Badge className="bg-gradient-to-r from-zinc-100 to-zinc-200 text-zinc-700 transition-all duration-300 hover:from-zinc-200 hover:to-zinc-300 dark:from-zinc-700 dark:to-zinc-600 dark:text-zinc-200 dark:hover:from-zinc-600 dark:hover:to-zinc-500">
+                                v1.0.0
+                            </Badge>
+                            <Badge className="bg-gradient-to-r from-zinc-900 to-zinc-800 text-white transition-all duration-300 hover:from-zinc-800 hover:to-zinc-700 dark:from-zinc-200 dark:to-zinc-100 dark:text-zinc-900 dark:hover:from-zinc-100 dark:hover:to-white">
+                                モノレポテンプレート
+                            </Badge>
                         </div>
 
-                        <Card className="group mt-12 border-violet-500/20 bg-black/40 backdrop-blur-md transition-all duration-500 hover:border-violet-400/60 hover:shadow-lg hover:shadow-violet-500/10">
-                            <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-violet-500/5 to-purple-500/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
-                            <CardHeader className="relative z-10">
-                                <CardTitle className="flex items-center gap-3 text-white transition-colors duration-300 group-hover:text-violet-100">
-                                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-r from-violet-500/20 to-purple-500/20 transition-transform duration-300 group-hover:scale-110">
-                                        📁
-                                    </span>
-                                    <span className="transition-transform duration-300 group-hover:translate-x-1">
-                                        プロジェクト構造
-                                    </span>
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent className="relative z-10">
-                                <div
-                                    className={cn(
-                                        CODE_BLOCK_STYLES,
-                                        'transition-colors duration-300 group-hover:bg-gray-900/70'
-                                    )}
-                                >
-                                    <div className="mb-2 font-semibold text-gray-400">
-                                        📦 shadcn-starter/
-                                    </div>
-                                    <div className="text-gray-400 transition-colors duration-200 hover:text-gray-300">
-                                        ├──
-                                        <span className="font-medium text-violet-300">
-                                            📱 apps/
-                                        </span>
-                                    </div>
-                                    <div className="text-gray-400 transition-colors duration-200 hover:text-gray-300">
-                                        │ ├──
-                                        <span className="text-green-400">
-                                            🌐 web/ # Next.js アプリケーション
-                                        </span>
-                                    </div>
-                                    <div className="text-gray-400 transition-colors duration-200 hover:text-gray-300">
-                                        │ └──
-                                        <span className="text-green-400">
-                                            📚 docs/ # Storybook ドキュメント
-                                        </span>
-                                    </div>
-                                    <div className="text-gray-400 transition-colors duration-200 hover:text-gray-300">
-                                        ├──
-                                        <span className="font-medium text-violet-300">
-                                            📦 packages/
-                                        </span>
-                                    </div>
-                                    <div className="text-gray-400 transition-colors duration-200 hover:text-gray-300">
-                                        │ ├──
-                                        <span className="text-green-400">
-                                            🎨 ui/ # 共有UIコンポーネント
-                                        </span>
-                                    </div>
-                                    <div className="text-gray-400 transition-colors duration-200 hover:text-gray-300">
-                                        │ ├──
-                                        <span className="text-green-400">
-                                            🔧 eslint-config/ # ESLint設定
-                                        </span>
-                                    </div>
-                                    <div className="text-gray-400 transition-colors duration-200 hover:text-gray-300">
-                                        │ ├──
-                                        <span className="text-green-400">
-                                            ⚙️ typescript-config/ #
-                                            TypeScript設定
-                                        </span>
-                                    </div>
-                                    <div className="text-gray-400 transition-colors duration-200 hover:text-gray-300">
-                                        │ ├──
-                                        <span className="text-green-400">
-                                            🧪 e2e-web/ # E2Eテストパッケージ
-                                        </span>
-                                    </div>
-                                    <div className="text-gray-400 transition-colors duration-200 hover:text-gray-300">
-                                        │ └──
-                                        <span className="text-green-400">
-                                            ⚙️ jest-config/ # Jest設定
-                                        </span>
-                                    </div>
-                                    <div className="text-gray-400 transition-colors duration-200 hover:text-gray-300">
-                                        └──
-                                        <span className="font-medium text-violet-300">
-                                            ⚡ turbo.json # Turborepo設定
-                                        </span>
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </section>
+                        <h1 className="mb-8 bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-700 bg-clip-text text-6xl font-bold tracking-tight text-zinc-900 md:text-7xl lg:text-8xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-300 dark:text-zinc-100">
+                            shadcn/ui Starter
+                        </h1>
 
-                    <section className="text-center">
-                        <SectionHeading>今すぐ始めよう</SectionHeading>
-                        <p className="mb-8 text-lg text-gray-300">
-                            モダンなWebアプリケーション開発のベストプラクティスが詰まったテンプレート
+                        <p className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed text-zinc-600 md:text-2xl dark:text-zinc-300">
+                            Next.js 15 + React 19 + Turborepo を使用した
+                            <br />
+                            <span className="font-semibold text-zinc-700 dark:text-zinc-200">
+                                モダンなUIコンポーネントライブラリテンプレート
+                            </span>
                         </p>
-                        <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+
+                        <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
                             <ButtonLink
-                                href="https://github.com/taiga-tech/shadcn-starter/generate"
+                                href="#quick-start"
                                 size="lg"
-                                external
-                                className={PRIMARY_BUTTON_STYLES}
+                                className="group bg-gradient-to-r from-zinc-900 to-zinc-800 px-10 py-4 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:from-zinc-800 hover:to-zinc-700 hover:shadow-xl dark:from-zinc-100 dark:to-zinc-200 dark:text-zinc-900 dark:hover:from-white dark:hover:to-zinc-100"
                             >
-                                テンプレートを使用
+                                <span className="flex items-center gap-2">
+                                    開発を開始
+                                    <Zap className="h-4 w-4 transition-transform group-hover:scale-110" />
+                                </span>
                             </ButtonLink>
                             <ButtonLink
-                                href="https://github.com/taiga-tech/shadcn-starter"
+                                href="https://storybook.js.org/"
                                 variant="outline"
                                 size="lg"
                                 external
-                                className={OUTLINE_BUTTON_STYLES}
+                                className="border-2 border-zinc-300 px-10 py-4 text-zinc-700 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-zinc-400 hover:bg-zinc-50 hover:shadow-xl dark:border-zinc-600 dark:text-zinc-200 dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
                             >
-                                GitHubで確認
+                                ドキュメント
                             </ButtonLink>
                         </div>
+
+                        <div className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-4 lg:gap-12">
+                            {ARCHITECTURE_BENEFITS.map((benefit, index) => (
+                                <ScrollReveal
+                                    key={index}
+                                    delay={index * 0.1}
+                                    direction="up"
+                                >
+                                    <div className="text-center">
+                                        <div className="mb-3 text-3xl transition-transform duration-300 hover:scale-110">
+                                            {benefit.icon}
+                                        </div>
+                                        <h3 className="mb-2 font-semibold text-zinc-900 dark:text-zinc-100">
+                                            {benefit.title}
+                                        </h3>
+                                        <p className="mb-2 text-sm text-zinc-600 dark:text-zinc-300">
+                                            {benefit.description}
+                                        </p>
+                                        <Badge
+                                            variant="secondary"
+                                            className="bg-zinc-100 text-xs dark:bg-zinc-700 dark:text-zinc-200"
+                                        >
+                                            {benefit.stats}
+                                        </Badge>
+                                    </div>
+                                </ScrollReveal>
+                            ))}
+                        </div>
                     </section>
-                </main>
-            </div>
-        </>
+                </ScrollReveal>
+
+                {/* Tech Stack Deep Dive */}
+                <ScrollReveal>
+                    <section className="mb-32">
+                        <SectionHeading>技術スタック詳細</SectionHeading>
+                        <div className="grid gap-8 md:grid-cols-2">
+                            {TECH_STACK_ITEMS.map((item, index) => (
+                                <ScrollReveal
+                                    key={index}
+                                    delay={index * 0.1}
+                                    direction={
+                                        index % 2 === 0 ? 'left' : 'right'
+                                    }
+                                >
+                                    <TechStackCard item={item} />
+                                </ScrollReveal>
+                            ))}
+                        </div>
+                    </section>
+                </ScrollReveal>
+
+                {/* Performance Metrics */}
+                <ScrollReveal>
+                    <section className="mb-32">
+                        <SectionHeading>パフォーマンス指標</SectionHeading>
+                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                            {PERFORMANCE_METRICS.map((metric, index) => (
+                                <ScrollReveal
+                                    key={index}
+                                    delay={index * 0.1}
+                                    direction="up"
+                                >
+                                    <PerformanceMetric metric={metric} />
+                                </ScrollReveal>
+                            ))}
+                        </div>
+
+                        <ScrollReveal delay={0.6}>
+                            <div className="mt-16 rounded-2xl border border-zinc-200 bg-gradient-to-br from-zinc-50 to-zinc-100 p-8 dark:border-zinc-700 dark:from-zinc-800 dark:to-zinc-700">
+                                <h3 className="mb-6 text-center text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+                                    競合比較
+                                </h3>
+                                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                                    {COMPARISON_DATA.map(
+                                        (comparison, index) => (
+                                            <div
+                                                key={index}
+                                                className="rounded-lg bg-white p-4 text-center shadow-sm dark:bg-zinc-800 dark:shadow-zinc-900/20"
+                                            >
+                                                <h4 className="mb-2 font-semibold text-zinc-900 dark:text-zinc-100">
+                                                    {comparison.aspect}
+                                                </h4>
+                                                <div className="space-y-1 text-sm">
+                                                    <div className="text-red-600 dark:text-red-400">
+                                                        従来:
+                                                        {comparison.traditional}
+                                                    </div>
+                                                    <div className="font-semibold text-green-600 dark:text-green-400">
+                                                        本テンプレート:
+                                                        {
+                                                            comparison.thisTemplate
+                                                        }
+                                                    </div>
+                                                    <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                                        {comparison.improvement}
+                                                    </Badge>
+                                                </div>
+                                            </div>
+                                        )
+                                    )}
+                                </div>
+                            </div>
+                        </ScrollReveal>
+                    </section>
+                </ScrollReveal>
+
+                {/* Project Structure */}
+                <ScrollReveal>
+                    <section className="mb-32">
+                        <SectionHeading>プロジェクト構成</SectionHeading>
+                        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                            {PROJECT_ITEMS.map((item, index) => (
+                                <ScrollReveal
+                                    key={index}
+                                    delay={index * 0.1}
+                                    direction="up"
+                                >
+                                    <ProjectCard item={item} />
+                                </ScrollReveal>
+                            ))}
+                        </div>
+                    </section>
+                </ScrollReveal>
+
+                {/* Features */}
+                <ScrollReveal>
+                    <section className="mb-32">
+                        <SectionHeading>主な機能</SectionHeading>
+                        <div className="grid gap-8 md:grid-cols-2">
+                            {FEATURE_ITEMS.map((item, index) => (
+                                <ScrollReveal
+                                    key={index}
+                                    delay={index * 0.1}
+                                    direction={
+                                        index % 2 === 0 ? 'left' : 'right'
+                                    }
+                                >
+                                    <FeatureCard item={item} />
+                                </ScrollReveal>
+                            ))}
+                        </div>
+                    </section>
+                </ScrollReveal>
+
+                {/* Quick Start */}
+                <ScrollReveal>
+                    <section id="quick-start" className="mb-32 scroll-mt-20">
+                        <SectionHeading>クイックスタート</SectionHeading>
+                        <div className="grid gap-8 lg:grid-cols-2">
+                            {QUICK_START_ITEMS.map((item, index) => (
+                                <ScrollReveal
+                                    key={index}
+                                    delay={index * 0.1}
+                                    direction={
+                                        index % 2 === 0 ? 'left' : 'right'
+                                    }
+                                >
+                                    <QuickStartCard item={item} />
+                                </ScrollReveal>
+                            ))}
+                        </div>
+
+                        {/* Project Structure Overview */}
+                        <ScrollReveal delay={0.4}>
+                            <Card className="mt-16 border-zinc-200 bg-white shadow-lg dark:border-zinc-700 dark:bg-zinc-800 dark:shadow-xl">
+                                <CardHeader>
+                                    <CardTitle className="flex items-center gap-2 text-2xl text-zinc-900 dark:text-zinc-100">
+                                        <div className="rounded-lg bg-zinc-100 p-2 dark:bg-zinc-700">
+                                            📁
+                                        </div>
+                                        プロジェクト構造
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <CopyableCode
+                                        title="Directory Structure"
+                                        code={[
+                                            '📦 shadcn-starter/',
+                                            '├── 📱 apps/',
+                                            '│ ├── 🌐 web/           # Next.js アプリケーション',
+                                            '│ └── 📚 docs/          # Storybook ドキュメント',
+                                            '├── 📦 packages/',
+                                            '│ ├── 🎨 ui/            # 共有UIコンポーネント',
+                                            '│ ├── 🔧 eslint-config/ # ESLint設定',
+                                            '│ ├── ⚙️ typescript-config/ # TypeScript設定',
+                                            '│ ├── 🧪 e2e-web/       # E2Eテストパッケージ',
+                                            '│ └── ⚙️ jest-config/   # Jest設定',
+                                            '└── ⚡ turbo.json        # Turborepo設定',
+                                        ]}
+                                        className="bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-700 dark:to-zinc-600"
+                                    />
+                                </CardContent>
+                            </Card>
+                        </ScrollReveal>
+                    </section>
+                </ScrollReveal>
+
+                {/* Call to Action */}
+                <ScrollReveal>
+                    <section className="text-center">
+                        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-700 p-16 text-white dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-300 dark:text-zinc-900">
+                            <div className="absolute inset-0 bg-gradient-to-br from-zinc-900/20 to-transparent dark:from-white/20"></div>
+                            <div className="relative z-10">
+                                <h2 className="mb-6 text-4xl font-bold md:text-5xl">
+                                    今すぐ始めよう
+                                </h2>
+                                <p className="mx-auto mb-10 max-w-2xl text-xl leading-relaxed text-zinc-200 dark:text-zinc-700">
+                                    モダンなWebアプリケーション開発の
+                                    <br className="hidden sm:block" />
+                                    <span className="font-semibold text-white dark:text-zinc-900">
+                                        ベストプラクティスが詰まったテンプレート
+                                    </span>
+                                </p>
+
+                                <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:justify-center">
+                                    <ButtonLink
+                                        href="https://github.com/taiga-tech/shadcn-starter/generate"
+                                        size="lg"
+                                        external
+                                        className="group bg-white px-10 py-4 text-zinc-900 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-zinc-100 hover:shadow-xl dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
+                                    >
+                                        <span className="flex items-center gap-2">
+                                            テンプレートを使用
+                                            <Star className="h-4 w-4 transition-transform group-hover:scale-110" />
+                                        </span>
+                                    </ButtonLink>
+                                    <ButtonLink
+                                        href="https://github.com/taiga-tech/shadcn-starter"
+                                        variant="outline"
+                                        size="lg"
+                                        external
+                                        className="border-2 border-zinc-300 px-10 py-4 text-zinc-800 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-zinc-800 hover:shadow-xl dark:border-zinc-600 dark:text-white"
+                                    >
+                                        GitHubで確認
+                                    </ButtonLink>
+                                </div>
+
+                                <div className="mt-12 grid grid-cols-2 gap-8 border-t border-zinc-600 pt-8 md:grid-cols-4 dark:border-zinc-400">
+                                    <div className="text-center">
+                                        <div className="mb-1 text-2xl font-bold text-white dark:text-zinc-900">
+                                            50+
+                                        </div>
+                                        <div className="text-sm text-zinc-300 dark:text-zinc-600">
+                                            設定済みパッケージ
+                                        </div>
+                                    </div>
+                                    <div className="text-center">
+                                        <div className="mb-1 text-2xl font-bold text-white dark:text-zinc-900">
+                                            12s
+                                        </div>
+                                        <div className="text-sm text-zinc-300 dark:text-zinc-600">
+                                            高速ビルド
+                                        </div>
+                                    </div>
+                                    <div className="text-center">
+                                        <div className="mb-1 text-2xl font-bold text-white dark:text-zinc-900">
+                                            94%
+                                        </div>
+                                        <div className="text-sm text-zinc-300 dark:text-zinc-600">
+                                            テストカバレッジ
+                                        </div>
+                                    </div>
+                                    <div className="text-center">
+                                        <div className="mb-1 text-2xl font-bold text-white dark:text-zinc-900">
+                                            5min
+                                        </div>
+                                        <div className="text-sm text-zinc-300 dark:text-zinc-600">
+                                            セットアップ時間
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </ScrollReveal>
+            </main>
+        </div>
     )
 }
 
