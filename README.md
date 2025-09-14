@@ -1,151 +1,224 @@
-# shadcn/ui モノレポテンプレート
+<div align="center">
+  <img alt="shadcn/ui" src="https://ui.shadcn.com/apple-touch-icon.png" width="120">
 
-モダンな shadcn/ui コンポーネントライブラリ用のモノレポテンプレートです。Turborepo、pnpm ワークスペース、Next.js 15、React 19、Storybook を統合した本格的な開発環境を提供します。
+# shadcn/ui Monorepo Template
 
-## 🚀 技術スタック
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js&labelColor=000)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&labelColor=000)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&labelColor=000)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1-38B2AC?style=for-the-badge&logo=tailwind-css&labelColor=000)](https://tailwindcss.com/)
+[![Turborepo](https://img.shields.io/badge/Turborepo-2.5-EF4444?style=for-the-badge&logo=turborepo&labelColor=000)](https://turbo.build/repo)
+[![pnpm](https://img.shields.io/badge/pnpm-10+-F69220?style=for-the-badge&logo=pnpm&labelColor=000)](https://pnpm.io/)
 
-### コア技術
+**English | [日本語](./README-ja.md)**
 
-- **Turborepo** - ビルドオーケストレーション・モノレポ管理
-- **pnpm** - 高速パッケージマネージャー（ワークスペース対応）
-- **TypeScript** - 型安全な開発環境
-- **Node.js 22+** - ランタイム要件
+A modern monorepo template for shadcn/ui component libraries.<br />
+Features Turborepo, pnpm workspaces, Next.js 15, React 19, and Storybook integrated for professional development.
 
-### フロントエンド
+  <img src="https://user-images.githubusercontent.com/4060187/196936123-f6e1db90-784d-4174-b774-92502b718836.png" alt="Turborepo" width="60">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" alt="Next.js" width="60">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" width="60">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/storybookjs/brand/master/icon/icon-storybook-default.svg" alt="Storybook" width="60">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript" width="60">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" width="60">
 
-- **Next.js 15** - React フレームワーク（App Router + Turbopack）
-- **React 19** - 最新のReactライブラリ
-- **Storybook** - コンポーネント開発・ドキュメント
-- **shadcn/ui** - 高品質UIコンポーネントライブラリ
-- **Tailwind CSS** - ユーティリティファーストCSS
-- **Radix UI** - アクセシブルなプリミティブ
-- **next-themes** - テーマサポート
-- **class-variance-authority** - バリアント管理
-- **lucide-react** - アイコンライブラリ
+### ✨ Feature Highlights
 
-### 開発・テストツール
+🚀 **Monorepo Architecture** - Fast builds with Turborepo + pnpm workspaces<br />
+🎨 **shadcn/ui** - High-quality UI component library<br />
+⚡ **Next.js 15** - Latest development environment with React 19 + Turbopack<br />
+📚 **Storybook** - Component-driven development<br />
+🛡️ **TypeScript** - Type-safe development<br />
+🎯 **Full Testing** - Jest + Playwright + Testing Library
 
-- **Jest** - ユニット・インテグレーションテスト
-- **Playwright** - E2Eテスト
-- **Testing Library** - Reactコンポーネントテスト
-- **ESLint** - コード品質・スタイル
-- **Prettier** - コードフォーマット
-- **Husky** - Git プリコミットフック
+</div>
 
-## 📁 プロジェクト構造
-
-```
-shadcn-starter/
-├── apps/
-│   ├── web/                    # Next.js Webアプリケーション
-│   │   ├── src/app/           # App Router ページ
-│   │   ├── src/components/    # アプリ固有コンポーネント
-│   │   └── src/lib/          # ユーティリティ
-│   └── docs/                  # Storybook ドキュメント
-│       └── stories/          # コンポーネントストーリー
-├── packages/
-│   ├── ui/                    # 共有UIコンポーネント
-│   │   ├── src/components/   # shadcn/ui コンポーネント
-│   │   └── src/lib/         # ユーティリティ
-│   ├── e2e-web/              # Playwright E2Eテスト
-│   ├── eslint-config/        # 共有ESLint設定
-│   ├── typescript-config/    # 共有TypeScript設定
-│   └── jest-config/          # 共有Jest設定
-└── scripts/                   # ビルド・ユーティリティスクリプト
-```
-
-## 🛠️ 開発コマンド
-
-### 基本的な開発・ビルド
+### 🚀 Quick Start
 
 ```bash
-# 開発サーバー起動（Web + Storybook）
+# Use this template
+# Click "Use this template" → "Create a new repository" on GitHub
+
+# Clone your new repository
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+cd YOUR_REPO_NAME
+
+# Install dependencies
+pnpm install
+
+# Start development servers
+pnpm dev
+```
+
+**Access:**
+
+- 🌐 Web App: http://localhost:3000
+- 📚 Storybook: http://localhost:6006
+
+## 🚀 Tech Stack
+
+### Core Technologies
+
+- **Turborepo** - Build orchestration & monorepo management
+- **pnpm** - Fast package manager with workspace support
+- **TypeScript** - Type-safe development environment
+- **Node.js 22+** - Runtime requirement
+
+### Frontend
+
+- **Next.js 15** - React framework with App Router + Turbopack
+- **React 19** - Latest React library
+- **Storybook** - Component development & documentation
+- **shadcn/ui** - High-quality UI component library
+- **Tailwind CSS** - Utility-first CSS framework
+- **Radix UI** - Accessible primitive components
+- **next-themes** - Theme support
+- **class-variance-authority** - Component variant management
+- **lucide-react** - Icon library
+
+### Development & Testing Tools
+
+- **Jest** - Unit & integration testing
+- **Playwright** - E2E testing
+- **Testing Library** - React component testing
+- **ESLint** - Code quality & style
+- **Prettier** - Code formatting
+- **Husky** - Git pre-commit hooks
+
+## 📁 Project Structure
+
+<details>
+<summary>🗂️ <strong>View Full Project Structure</strong></summary>
+
+```
+📦 shadcn-starter/
+├── 🌐 apps/
+│   ├── 💻 web/                     # Next.js Web Application
+│   │   ├── 📄 src/app/            # App Router pages
+│   │   ├── 🧩 src/components/     # App-specific components
+│   │   └── 🔧 src/lib/           # Utilities
+│   └── 📚 docs/                   # Storybook Documentation
+│       └── 📖 stories/           # Component stories
+├── 📦 packages/
+│   ├── 🎨 ui/                     # Shared UI Components
+│   │   ├── 🧩 src/components/    # shadcn/ui components
+│   │   └── 🔧 src/lib/          # Utilities
+│   ├── 🧪 e2e-web/               # Playwright E2E tests
+│   ├── ⚙️ eslint-config/          # Shared ESLint config
+│   ├── ⚙️ typescript-config/      # Shared TypeScript config
+│   └── ⚙️ jest-config/            # Shared Jest config
+└── 🔨 scripts/                    # Build & utility scripts
+```
+
+</details>
+
+### 🏗️ Architecture Overview
+
+| Directory               | Description             | Tech Stack                         |
+| ----------------------- | ----------------------- | ---------------------------------- |
+| 🌐 **apps/web**         | Main Web Application    | Next.js 15, React 19, Tailwind CSS |
+| 📚 **apps/docs**        | Component Documentation | Storybook 9.1                      |
+| 🎨 **packages/ui**      | Shared UI Components    | shadcn/ui, Radix UI, CVA           |
+| 🧪 **packages/e2e-web** | E2E Test Suite          | Playwright                         |
+| ⚙️ **packages/config**  | Shared Config Packages  | ESLint, TypeScript, Jest           |
+
+## 🛠️ Development Commands
+
+### Basic Development & Build
+
+```bash
+# Start development servers (Web + Storybook)
 pnpm dev
 
-# 全アプリケーションをビルド
+# Build all applications
 pnpm build
 
-# ビルド済みStorybookをプレビュー
+# Preview built Storybook
 pnpm preview-storybook
 ```
 
-### テスト実行
+### Testing
 
 ```bash
-# 全テスト実行
+# Run all tests
 pnpm test
 
-# テストタイプ別実行
-pnpm test:unit              # ユニットテストのみ
-pnpm test:integration       # インテグレーションテストのみ
-pnpm test:e2e              # E2Eテスト
-pnpm test:all              # 全テストタイプ
+# Run tests by type
+pnpm test:unit              # Unit tests only
+pnpm test:integration       # Integration tests only
+pnpm test:e2e              # E2E tests
+pnpm test:all              # All test types
 ```
 
-### コード品質管理
+### Code Quality
 
 ```bash
-# ESLint実行
+# Run ESLint
 pnpm lint
 
-# ファイル命名規則チェック
+# Check file naming conventions
 pnpm lint:ls
 
-# TypeScript型チェック
+# TypeScript type checking
 pnpm check-types
 
-# Prettierフォーマット
+# Format with Prettier
 pnpm format
 ```
 
-### バージョン管理・リリース
+### Version Management & Release
 
 ```bash
-# チェンジセット作成
+# Create changeset
 pnpm changeset
 
-# パッケージバージョン更新
+# Update package versions
 pnpm version-packages
 
-# パッケージ公開
+# Publish packages
 pnpm release
 ```
 
-### ユーティリティ
+### Utilities
 
 ```bash
-# 依存関係グラフ生成
+# Generate dependency graph
 pnpm generate:graph
 
-# インデックスファイル生成
+# Generate index files
 pnpm generate:index
 
-# 依存関係クリーンインストール
+# Clean install dependencies
 pnpm clean-install
 
-# 依存関係更新
+# Update dependencies
 pnpm update-deps
 ```
 
-## 🎨 shadcn/ui コンポーネント管理
+## 🎨 shadcn/ui Component Management
 
-### 新しいコンポーネントの追加
+### Adding New Components
 
-Webアプリケーションにshadcn/uiコンポーネントを追加：
+Add shadcn/ui components to the web application:
 
 ```bash
-# 基本的なコンポーネント追加
+# Add individual components
 pnpm dlx shadcn@latest add button -c apps/web
 pnpm dlx shadcn@latest add card -c apps/web
 pnpm dlx shadcn@latest add dialog -c apps/web
 
-# 複数コンポーネント同時追加
+# Add multiple components at once
 pnpm dlx shadcn@latest add button card dialog -c apps/web
 ```
 
-コンポーネントは `packages/ui/src/components/` に配置され、プロジェクト全体で共有できます。
+Components are placed in `packages/ui/src/components/` and shared across the entire project.
 
-### コンポーネントの使用
+### Using Components
 
 ```tsx
 import { Button } from '@workspace/ui/components/button'
@@ -155,85 +228,81 @@ export default function MyPage() {
     return (
         <Card>
             <CardHeader>
-                <h2>タイトル</h2>
+                <h2>Title</h2>
             </CardHeader>
             <CardContent>
-                <Button variant="default">クリック</Button>
+                <Button variant="default">Click me</Button>
             </CardContent>
         </Card>
     )
 }
 ```
 
-## ⚙️ 技術仕様・要件
+## ⚙️ Technical Specifications & Requirements
 
-### システム要件
+### System Requirements
 
-- **Node.js**: 22以上必須
-- **パッケージマネージャー**: pnpm@10.0.0+ （npmやyarn使用不可）
-- **Git**: プリコミットフック有効化済み
+- **Node.js**: 22 or higher required
+- **Package Manager**: pnpm@10.0.0+ (npm and yarn not supported)
+- **Git**: Pre-commit hooks enabled
 
-### 開発原則
+### Development Principles
 
-- **TypeScript必須**: 型エラー・ESLintエラーは常にゼロ
-- **App Router採用**: API Routesは使用しない（Server Actions使用）
-- **ワークスペース管理**: `@workspace/*` での設定・コンポーネント共有
-- **セマンティックHTML**: ARIA対応によるアクセシビリティ確保
+- **TypeScript Required**: Zero type errors and ESLint errors policy
+- **App Router Adoption**: No API Routes (use Server Actions instead)
+- **Workspace Management**: Share configs and components via `@workspace/*`
+- **Semantic HTML**: ARIA compliance for accessibility
 
-### コードスタイル
+### Code Style
 
-- セミコロンなし、シングルクォート使用
-- 行長制限80文字、インデント2スペース
-- Tailwindクラス・インポート文は自動ソート
-- `cn()` 関数によるclassName結合必須
+- No semicolons, single quotes
+- 80-character line limit, 2-space indentation
+- Auto-sorted Tailwind classes and imports
+- Required `cn()` function for className concatenation
 
-## 📚 開発ガイドライン
+## 📚 Development Guidelines
 
-### プロジェクト初期化
+### Project Initialization
 
 ```bash
-# リポジトリクローン後の初期セットアップ
+# Initial setup after cloning repository
 pnpm install
-pnpm prepare  # Huskyフック有効化
+pnpm prepare  # Enable Husky hooks
 ```
 
-### 開発ワークフロー
+### Development Workflow
 
-1. **機能開発**: `pnpm dev` で開発サーバー起動
-2. **コンポーネント開発**: Storybookで視覚確認
-3. **品質チェック**: 以下のコマンドを順次実行
+1. **Feature Development**: Start development server with `pnpm dev`
+2. **Component Development**: Visual validation with Storybook
+3. **Quality Check**: Run the following commands sequentially
 
 ```bash
-pnpm check-types    # 型チェック
+pnpm check-types    # Type checking
 pnpm lint          # ESLint
-pnpm test          # テスト実行
-pnpm build         # ビルド確認
+pnpm test          # Test execution
+pnpm build         # Build validation
 ```
 
-### テスト戦略
+### Testing Strategy
 
-- **ユニットテスト**: `__test__/unit/` - 純粋関数・ユーティリティ
-- **インテグレーションテスト**: `__test__/integration/` - コンポーネント統合
-- **E2Eテスト**: `packages/e2e-web/` - Playwright使用
-- **ビジュアルテスト**: Storybook - コンポーネント表示・操作
+- **Unit Tests**: `__test__/unit/` - Pure functions & utilities
+- **Integration Tests**: `__test__/integration/` - Component integration
+- **E2E Tests**: `packages/e2e-web/` - Using Playwright
+- **Visual Tests**: Storybook - Component display & interaction
 
-### パフォーマンス最適化
+### Performance Optimization
 
-- Server Components優先、`use client`は最小限
-- 動的import・Suspenseでコード分割
-- メモ化（useMemo/useCallback）の適切な使用
-- 画像は`next/image`、リンクは`next/link`使用
+- Prioritize Server Components, minimize `use client`
+- Code splitting with dynamic imports & Suspense
+- Appropriate use of memoization (useMemo/useCallback)
+- Use `next/image` for images, `next/link` for links
 
-## 🔗 依存関係グラフ
+## 🔗 Dependency Graph
 
-プロジェクト内の依存関係は以下のコマンドで可視化できます：
+Visualize project dependencies with the following command:
 
 ```bash
 pnpm generate:graph
 ```
 
-![依存関係グラフ](./graph.svg)
-
-## 📄 ライセンス
-
-UNLICENSED - プライベートテンプレート
+![Dependency Graph](./graph.svg)
