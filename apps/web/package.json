@@ -21,33 +21,34 @@
         "test:watch": "jest --watch"
     },
     "dependencies": {
-        "@next/bundle-analyzer": "15.5.3",
+        "@next/bundle-analyzer": "15.5.6",
         "@workspace/ui": "workspace:*",
         "class-variance-authority": "0.7.1",
-        "framer-motion": "^12.23.12",
-        "lucide-react": "0.544.0",
-        "next": "15.5.3",
+        "framer-motion": "^12.23.24",
+        "lucide-react": "0.546.0",
+        "next": "15.5.6",
         "next-compose-plugins": "2.2.1",
         "next-contentlayer2": "0.5.8",
         "next-themes": "0.4.6",
-        "nuqs": "2.6.0",
-        "react": "19.1.1",
-        "react-dom": "19.1.1",
+        "nuqs": "2.7.2",
+        "react": "19.2.0",
+        "react-dom": "19.2.0",
         "schema-dts": "1.1.5",
-        "zod": "4.1.8"
+        "zod": "4.1.12"
     },
     "devDependencies": {
-        "@jest/globals": "^30.1.2",
-        "@testing-library/jest-dom": "^6.8.0",
+        "@jest/globals": "^30.2.0",
+        "@testing-library/jest-dom": "^6.9.1",
         "@testing-library/react": "^16.3.0",
-        "@types/node": "^24.4.0",
-        "@types/react": "^19.1.13",
-        "@types/react-dom": "^19.1.9",
-        "@workspace/eslint-config": "workspace:^",
+        "@types/node": "^24.8.1",
+        "@types/react": "^19.2.2",
+        "@types/react-dom": "^19.2.2",
+        "@workspace/eslint-config": "workspace:*",
         "@workspace/jest-config": "workspace:*",
         "@workspace/typescript-config": "workspace:*",
-        "eslint": "^9.35.0",
-        "jest": "^30.1.3",
-        "jest-environment-jsdom": "^30.1.2"
+        "eslint": "^9.38.0",
+        "jest": "^30.2.0",
+        "jest-environment-jsdom": "^30.2.0",
+        "typescript-eslint": "^8.46.1"
     }
 }

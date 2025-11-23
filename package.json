@@ -35,16 +35,16 @@
         "@workspace/eslint-config": "workspace:*",
         "@workspace/typescript-config": "workspace:*",
         "husky": "^9.1.7",
-        "nx": "21.5.2",
+        "nx": "21.6.5",
         "prettier": "^3.6.2",
-        "prettier-plugin-tailwindcss": "^0.6.14",
-        "task-master-ai": "^0.26.0",
-        "turbo": "^2.5.6",
-        "typescript": "^5.9.2"
+        "prettier-plugin-tailwindcss": "^0.7.1",
+        "task-master-ai": "^0.29.0",
+        "turbo": "^2.5.8",
+        "typescript": "^5.9.3"
     },
     "engines": {
         "node": ">=22.0.0",
         "pnpm": ">=10.0.0"
     },
-    "packageManager": "pnpm@10.16.1+sha512.0e155aa2629db8672b49e8475da6226aa4bdea85fdcdfdc15350874946d4f3c91faaf64cbdc4a5d1ab8002f473d5c3fcedcd197989cf0390f9badd3c04678706"
+    "packageManager": "pnpm@10.23.0+sha512.21c4e5698002ade97e4efe8b8b4a89a8de3c85a37919f957e7a0f30f38fbc5bbdd05980ffe29179b2fb6e6e691242e098d945d1601772cad0fef5fb6411e2a4b"
 }
