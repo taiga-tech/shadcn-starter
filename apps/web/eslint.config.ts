@@ -1,11 +1,18 @@
 import { nextJsConfig } from '@workspace/eslint-config/next'
+import type { Linter } from 'eslint'
 
-/** @type {import("eslint").Linter.Config} */
-export default [
+const config: Linter.Config[] = [
     ...nextJsConfig,
     {
+        languageOptions: {
+            parserOptions: {
+                tsconfigRootDir: import.meta.dirname,
+            },
+        },
         rules: {
             'turbo/no-undeclared-env-vars': 'off',
         },
     },
 ]
+
+export default config

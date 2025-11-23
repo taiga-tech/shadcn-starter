@@ -1,4 +1,15 @@
 import { config } from '@workspace/eslint-config/react-internal'
+import type { Linter } from 'eslint'
 
-/** @type {import("eslint").Linter.Config} */
-export default config
+const eslintConfig: Linter.Config[] = [
+    ...config,
+    {
+        languageOptions: {
+            parserOptions: {
+                tsconfigRootDir: import.meta.dirname,
+            },
+        },
+    },
+]
+
+export default eslintConfig

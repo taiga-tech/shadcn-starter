@@ -56,6 +56,7 @@ ignore:
 
   # Standard files that should not follow kebab-case
   - README.md
+  - 'README-ja.md'
   - CLAUDE.md
   - TEMPLATE_USAGE.md
   - LICENSE
