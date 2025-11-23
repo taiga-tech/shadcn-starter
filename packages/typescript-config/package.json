@@ -1,9 +1,13 @@
 {
-  "name": "@workspace/typescript-config",
-  "version": "0.0.0",
-  "private": true,
-  "license": "PROPRIETARY",
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@workspace/typescript-config",
+    "version": "0.0.0",
+    "license": "UNLICENSED",
+    "private": true,
+    "engines": {
+        "node": ">=22.0.0",
+        "pnpm": ">=10.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

@@ -1,0 +1,7 @@
+{
+    "extends": "@workspace/typescript-config/base.json",
+    "compilerOptions": {
+        "baseUrl": "."
+    },
+    "include": ["tests/**/*", "playwright.config.ts"]
+}
