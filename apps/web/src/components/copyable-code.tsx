@@ -65,7 +65,7 @@ const CopyableCode = ({ code, className, title }: CopyableCodeProps) => {
                     size="sm"
                     variant="ghost"
                     className={cn(
-                        'absolute right-2 top-2 h-8 w-8 p-0 opacity-0 transition-all duration-200',
+                        'absolute top-2 right-2 h-8 w-8 p-0 opacity-0 transition-all duration-200',
                         'group-hover:opacity-100',
                         'hover:bg-zinc-200 focus-visible:opacity-100 dark:hover:bg-zinc-700'
                     )}
@@ -80,7 +80,7 @@ const CopyableCode = ({ code, className, title }: CopyableCodeProps) => {
             </div>
 
             {copied && (
-                <div className="absolute right-12 top-2 rounded bg-green-100 px-2 py-1 text-xs text-green-800 dark:bg-green-900 dark:text-green-200">
+                <div className="absolute top-2 right-12 rounded bg-green-100 px-2 py-1 text-xs text-green-800 dark:bg-green-900 dark:text-green-200">
                     コピーしました！
                 </div>
             )}

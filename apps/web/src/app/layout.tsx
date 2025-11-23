@@ -1,5 +1,7 @@
 import { PropsWithChildren } from 'react'
 
+import { Metadata } from 'next'
+
 import { cn } from '@workspace/ui/lib/utils'
 
 import { sans } from '@/lib/fonts'
@@ -11,7 +13,7 @@ import { Providers } from '@/components/providers'
 
 import '@workspace/ui/globals.css'
 
-export const metadata = defaultMetadata
+export const metadata: Metadata = defaultMetadata
 
 const RootLayout = ({ children }: Readonly<PropsWithChildren>) => {
     return (

@@ -328,7 +328,7 @@ const Page = () => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-white via-zinc-50 to-zinc-100 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-700">
             {/* Theme Toggle */}
-            <div className="fixed right-4 top-4 z-50">
+            <div className="fixed top-4 right-4 z-50">
                 <ThemeToggle className="shadow-lg dark:shadow-zinc-700/50" />
             </div>
 

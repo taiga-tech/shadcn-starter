@@ -245,6 +245,7 @@ import { ErrorBoundary as ReactErrorBoundary } from 'react-error-boundary'
 
 // components/error-boundary.tsx
 
+// components/error-boundary.tsx
 function ErrorFallback({ error, resetErrorBoundary }: any) {
     return (
         <div className="p-8 text-center">
