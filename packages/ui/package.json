@@ -42,5 +42,8 @@
         "eslint": "^9.39.1",
         "tailwindcss": "^4.1.17",
         "typescript-eslint": "^8.47.0"
+    },
+    "lint-staged": {
+        "*.{js,ts,tsx}": "eslint --fix --max-warnings 0"
     }
 }

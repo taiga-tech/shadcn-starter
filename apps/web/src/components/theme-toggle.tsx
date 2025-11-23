@@ -1,5 +1,7 @@
 'use client'
 
+import { useRef } from 'react'
+
 import { useTheme } from 'next-themes'
 
 import { Button } from '@workspace/ui/components/button'
@@ -17,23 +19,13 @@ const ThemeToggle = ({
     variant = 'ghost',
     size = 'icon',
 }: ThemeToggleProps) => {
-    const { theme, setTheme, resolvedTheme } = useTheme()
-
-    if (!resolvedTheme) {
-        return (
-            <Button
-                variant={variant}
-                size={size}
-                className={cn('h-9 w-9', className)}
-                disabled
-            >
-                <div className="h-4 w-4" />
-                <span className="sr-only">テーマ切り替え</span>
-            </Button>
-        )
-    }
+    const mounted = useRef(false)
+    const { theme, setTheme } = useTheme()
 
     const toggleTheme = () => {
+        if (!mounted.current) {
+            mounted.current = true
+        }
         setTheme(theme === 'dark' ? 'light' : 'dark')
     }
 
@@ -43,7 +35,7 @@ const ThemeToggle = ({
             size={size}
             onClick={toggleTheme}
             className={cn(
-                'h-9 w-9 transition-all duration-200',
+                'h-9 w-9 cursor-pointer transition-all duration-200',
                 'hover:bg-zinc-100 dark:hover:bg-zinc-800',
                 'focus-visible:ring-2 focus-visible:ring-zinc-400 dark:focus-visible:ring-zinc-600',
                 className
