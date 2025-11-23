@@ -58,6 +58,8 @@ ignore:
   - README.md
   - 'README-ja.md'
   - CLAUDE.md
+  - AGENTS.md
+  - '**/AGENTS.md'
   - TEMPLATE_USAGE.md
   - LICENSE
   - CHANGELOG.md
