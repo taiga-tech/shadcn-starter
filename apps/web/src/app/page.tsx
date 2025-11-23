@@ -139,7 +139,7 @@ const ProjectCard = memo(
                 <div className="flex items-center gap-3">
                     <Badge
                         variant="secondary"
-                        className="bg-gradient-to-r from-zinc-100 to-zinc-200 text-zinc-700 transition-colors group-hover:from-zinc-200 group-hover:to-zinc-300 dark:from-zinc-700 dark:to-zinc-600 dark:text-zinc-200 dark:group-hover:from-zinc-600 dark:group-hover:to-zinc-500"
+                        className="bg-linear-to-r from-zinc-100 to-zinc-200 text-zinc-700 transition-colors group-hover:from-zinc-200 group-hover:to-zinc-300 dark:from-zinc-700 dark:to-zinc-600 dark:text-zinc-200 dark:group-hover:from-zinc-600 dark:group-hover:to-zinc-500"
                     >
                         {item.badge}
                     </Badge>
@@ -155,7 +155,7 @@ const ProjectCard = memo(
                             key={index}
                             className="flex items-center gap-3 transition-colors group-hover:text-zinc-700 dark:group-hover:text-zinc-200"
                         >
-                            <div className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-zinc-400 to-zinc-500 transition-all group-hover:scale-125 dark:from-zinc-500 dark:to-zinc-400"></div>
+                            <div className="h-1.5 w-1.5 rounded-full bg-linear-to-r from-zinc-400 to-zinc-500 transition-all group-hover:scale-125 dark:from-zinc-500 dark:to-zinc-400"></div>
                             {listItem}
                         </li>
                     ))}
@@ -318,7 +318,7 @@ const SectionHeading = memo(({ children }: { children: React.ReactNode }) => (
         <h2 className="mb-4 text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
             {children}
         </h2>
-        <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-zinc-400 to-zinc-600 dark:from-zinc-500 dark:to-zinc-400"></div>
+        <div className="mx-auto h-1 w-20 rounded-full bg-linear-to-r from-zinc-400 to-zinc-600 dark:from-zinc-500 dark:to-zinc-400"></div>
     </div>
 ))
 
@@ -326,7 +326,7 @@ SectionHeading.displayName = 'SectionHeading'
 
 const Page = () => {
     return (
-        <div className="min-h-screen bg-gradient-to-br from-white via-zinc-50 to-zinc-100 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-700">
+        <div className="min-h-screen bg-linear-to-br from-white via-zinc-50 to-zinc-100 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-700">
             {/* Theme Toggle */}
             <div className="fixed top-4 right-4 z-50">
                 <ThemeToggle className="shadow-lg dark:shadow-zinc-700/50" />
@@ -337,15 +337,15 @@ const Page = () => {
                 <ScrollReveal>
                     <section className="mb-32 text-center">
                         <div className="mb-8 inline-flex items-center gap-3">
-                            <Badge className="bg-gradient-to-r from-zinc-100 to-zinc-200 text-zinc-700 transition-all duration-300 hover:from-zinc-200 hover:to-zinc-300 dark:from-zinc-700 dark:to-zinc-600 dark:text-zinc-200 dark:hover:from-zinc-600 dark:hover:to-zinc-500">
+                            <Badge className="bg-linear-to-r from-zinc-100 to-zinc-200 text-zinc-700 transition-all duration-300 hover:from-zinc-200 hover:to-zinc-300 dark:from-zinc-700 dark:to-zinc-600 dark:text-zinc-200 dark:hover:from-zinc-600 dark:hover:to-zinc-500">
                                 v1.0.0
                             </Badge>
-                            <Badge className="bg-gradient-to-r from-zinc-900 to-zinc-800 text-white transition-all duration-300 hover:from-zinc-800 hover:to-zinc-700 dark:from-zinc-200 dark:to-zinc-100 dark:text-zinc-900 dark:hover:from-zinc-100 dark:hover:to-white">
+                            <Badge className="bg-linear-to-r from-zinc-900 to-zinc-800 text-white transition-all duration-300 hover:from-zinc-800 hover:to-zinc-700 dark:from-zinc-200 dark:to-zinc-100 dark:text-zinc-900 dark:hover:from-zinc-100 dark:hover:to-white">
                                 モノレポテンプレート
                             </Badge>
                         </div>
 
-                        <h1 className="mb-8 bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-700 bg-clip-text text-6xl font-bold tracking-tight text-zinc-900 md:text-7xl lg:text-8xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-300 dark:text-zinc-100">
+                        <h1 className="mb-8 bg-linear-to-br from-zinc-900 via-zinc-800 to-zinc-700 bg-clip-text text-6xl font-bold tracking-tight text-zinc-900 md:text-7xl lg:text-8xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-300 dark:text-zinc-100">
                             shadcn/ui Starter
                         </h1>
 
@@ -361,7 +361,7 @@ const Page = () => {
                             <ButtonLink
                                 href="#quick-start"
                                 size="lg"
-                                className="group bg-gradient-to-r from-zinc-900 to-zinc-800 px-10 py-4 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:from-zinc-800 hover:to-zinc-700 hover:shadow-xl dark:from-zinc-100 dark:to-zinc-200 dark:text-zinc-900 dark:hover:from-white dark:hover:to-zinc-100"
+                                className="group bg-linear-to-r from-zinc-900 to-zinc-800 px-10 py-4 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:from-zinc-800 hover:to-zinc-700 hover:shadow-xl dark:from-zinc-100 dark:to-zinc-200 dark:text-zinc-900 dark:hover:from-white dark:hover:to-zinc-100"
                             >
                                 <span className="flex items-center gap-2">
                                     開発を開始
@@ -446,7 +446,7 @@ const Page = () => {
                         </div>
 
                         <ScrollReveal delay={0.6}>
-                            <div className="mt-16 rounded-2xl border border-zinc-200 bg-gradient-to-br from-zinc-50 to-zinc-100 p-8 dark:border-zinc-700 dark:from-zinc-800 dark:to-zinc-700">
+                            <div className="mt-16 rounded-2xl border border-zinc-200 bg-linear-to-br from-zinc-50 to-zinc-100 p-8 dark:border-zinc-700 dark:from-zinc-800 dark:to-zinc-700">
                                 <h3 className="mb-6 text-center text-2xl font-bold text-zinc-900 dark:text-zinc-100">
                                     競合比較
                                 </h3>
@@ -567,7 +567,7 @@ const Page = () => {
                                             '│ └── ⚙️ jest-config/   # Jest設定',
                                             '└── ⚡ turbo.json        # Turborepo設定',
                                         ]}
-                                        className="bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-700 dark:to-zinc-600"
+                                        className="bg-linear-to-br from-zinc-50 to-zinc-100 dark:from-zinc-700 dark:to-zinc-600"
                                     />
                                 </CardContent>
                             </Card>
@@ -578,8 +578,8 @@ const Page = () => {
                 {/* Call to Action */}
                 <ScrollReveal>
                     <section className="text-center">
-                        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-700 p-16 text-white dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-300 dark:text-zinc-900">
-                            <div className="absolute inset-0 bg-gradient-to-br from-zinc-900/20 to-transparent dark:from-white/20"></div>
+                        <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-zinc-900 via-zinc-800 to-zinc-700 p-16 text-white dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-300 dark:text-zinc-900">
+                            <div className="absolute inset-0 bg-linear-to-br from-zinc-900/20 to-transparent dark:from-white/20"></div>
                             <div className="relative z-10">
                                 <h2 className="mb-6 text-4xl font-bold md:text-5xl">
                                     今すぐ始めよう

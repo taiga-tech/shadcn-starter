@@ -1,8 +1,10 @@
 import { StorybookConfig } from '@storybook/nextjs'
 import { createRequire } from 'node:module'
+import { fileURLToPath } from 'node:url'
 import { dirname, join, resolve } from 'path'
 
 const require = createRequire(import.meta.url)
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const config: StorybookConfig = {
     stories: ['../stories/*.stories.tsx', '../stories/**/*.stories.tsx'],
