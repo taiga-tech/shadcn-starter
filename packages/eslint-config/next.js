@@ -3,10 +3,9 @@ import pluginNext from '@next/eslint-plugin-next'
 import eslintConfigPrettier from 'eslint-config-prettier'
 import pluginReact from 'eslint-plugin-react'
 import pluginReactHooks from 'eslint-plugin-react-hooks'
+import { defineConfig, globalIgnores } from 'eslint/config'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
-import { defineConfig, globalIgnores } from 'eslint/config'
-
 
 import { config as baseConfig } from './base.js'
 
@@ -58,5 +57,4 @@ export const nextJsConfig = defineConfig([
             'react-hooks/exhaustive-deps': 'error',
         },
     },
-]
-)
+])
