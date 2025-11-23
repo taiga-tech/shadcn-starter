@@ -28,6 +28,7 @@ build
 dist
 storybook-static
 tsconfig.tsbuildinfo
+next-env.d.ts
 
 # Logs
 logs
