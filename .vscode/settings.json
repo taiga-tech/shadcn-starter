@@ -1,0 +1,11 @@
+{
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "tailwindCSS.experimental.classRegex": [
+        [
+            "cva(?:<[^>]*>)?(([^)]*))",
+            "[\"'`]([^\"'`]*).*?[\"'`]",
+            "(?:twMerge|twJoin)\\(([^\\);]*)[\\);]"
+        ]
+    ],
+    "eslint.workingDirectories": [".", "apps/docs", "apps/web", "packages/ui"]
+}

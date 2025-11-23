@@ -1,0 +1,5 @@
+# Run prettier from root
+pnpm exec lint-staged
+
+# Run eslint in each package that has lint-staged config
+pnpm -r --filter web --filter docs --filter @workspace/ui exec lint-staged
