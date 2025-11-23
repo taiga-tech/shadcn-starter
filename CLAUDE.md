@@ -1,7 +1,7 @@
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-回答は必ず日本語で行ってください。
+思考は英語で回答は必ず日本語で行ってください。
 serena mcpを積極的に使用して下さい。
 
 ## 詳細な知識管理
